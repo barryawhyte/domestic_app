@@ -1,0 +1,36 @@
+<div class="form-part" ng-class="{'form-part-invalid': validationAnomalies.anomalies_block.error, 'form-part-completed': validationAnomalies.anomalies_block.complete}">
+    <div class="block-title" id="anomalies_block" hm-tap="toggleBlock('anomalies_block')">
+        <div class="title">{{text.AT_ANOMALIES_TITRE}}</div>
+        <i ng-class="isBlockDisplayed('anomalies_block') ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+    </div>
+    <div class="inputs" ng-show="isBlockDisplayed('anomalies_block')">
+
+        <label id="waiting_duration_label" class="item item-input item-stacked-label">
+            <div class="input-label">{{text.AT_TEMPS_ATTENTE}} *</div>
+            <div class="input-stacked" ng-class="{'error': validationAnomalies.waiting_duration.error}">
+                <i class="input-action-addon icon-chrono" hm-tap="showKeypad('waiting_duration')"></i>
+                <input id="waiting_duration" type="text"
+                       value="{{pvi.waiting_duration}}"
+                       ng-model="pvi.waiting_duration"
+                       hm-tap="showKeypad('waiting_duration')" readonly>
+            </div>
+        </label>
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationAnomalies.waiting_duration_cause.error}">
+            <div class="input-label">{{pvi.AT_CAUSE}}</div>
+            <input type="text" value="{{pvi.waiting_duration_cause}}" ng-model="pvi.waiting_duration_cause">
+        </label>
+
+        <label id="preparation_duration_label" class="item item-input item-stacked-label">
+            <div class="input-label">{{text.AT_TEMPS_PREPARATION}} *</div>
+            <div class="input-stacked" ng-class="{'error': validationAnomalies.preparation_duration.error}">
+                <i class="input-action-addon icon-chrono" hm-tap="showKeypad('preparation_duration')"></i>
+                <input id="preparation_duration" type="text"
+                       value="{{pvi.preparation_duration}}"
+                       ng-model="pvi.preparation_duration"
+                       hm-tap="showKeypad('preparation_duration')" readonly>
+            </div>
+        </label>
+
+    </div>
+</div>

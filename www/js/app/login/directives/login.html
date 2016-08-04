@@ -1,0 +1,24 @@
+<div class="login">
+    <form>
+        <div class="form-part">
+            <div class="inputs">
+                <label class="item item-input item-stacked-label">
+                    <div class="input-label">{{text.AT_EMAIL}}</div>
+                    <input ng-model="user.email" type="text" value="{{user.email}}">
+                </label>
+
+                <label class="item item-input item-stacked-label">
+                    <div class="input-label">{{text.AT_PASSWORD}}</div>
+                    <input ng-model="user.password" type="password" value="{{user.password}}">
+                </label>
+            </div>
+        </div>
+    </form>
+
+    <div class="action-footer">
+        <div class="button button-balanced" hm-tap="loginButtonTap($event)">
+            <i class="ion-log-in"></i>
+            {{text.AT_LOGIN}}
+        </div>
+    </div>
+</div>

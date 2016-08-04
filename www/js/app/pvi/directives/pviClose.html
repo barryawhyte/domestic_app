@@ -1,0 +1,62 @@
+<div class="form-header">
+    <div class="row identification-main">
+        <div class="col col-70">{{pvi.mission_start_date}}</div>
+        <div class="col text-right">{{pvi.mission_start_time}}</div>
+    </div>
+    <div class="row">
+        <div class="col col-70 identification-sub">{{pvi.final_customer_name}}</div>
+        <div class="col text-right identification-description">{{pvi.file_number}}</div>
+    </div>
+</div>
+
+<form name="pviCloseForm" novalidate>
+
+<div class="form-part" ng-class="{'form-part-invalid': validationClose.close_block.error, 'form-part-completed': validationClose.close_block.complete}">
+    <div class="block-title">
+        <div class="title">{{text.AT_CLORE_PVI}}</div>
+    </div>
+    <div class="inputs">
+
+        <div class="item item-input item-stacked-label">
+
+            <div class="input-label">{{text.AT_FIN_DE_SERVICE}} *</div>
+            <div class="input-stacked" ng-class="{'error': validationClose.actual_end_date.error}">
+                <i class="input-action-addon ion-android-calendar" hm-tap="openDatePicker('actual_start_date')"></i>
+                <input type="text" value="{{pvi.actual_end_date}}" ng-model="pvi.actual_end_date" hm-tap="openDatePicker('actual_end_date')" readonly>
+                <i class="input-action-addon ion-minus" hm-tap="editDay('actual_end_date', 'deduct')"></i>
+                <i class="input-action-addon ion-plus" hm-tap="editDay('actual_end_date', 'add')"></i>
+            </div>
+
+            <div class="input-stacked input-group clockpicker_actual_end_time"
+                 ng-class="{'error': validationClose.actual_end_time.error}"
+                 data-placement="top" data-align="middle" data-autoclose="true">
+                <i class="input-group-addon input-action-addon ion-android-time"></i>
+                <input id="actual_end_time" type="text" value="{{pvi.actual_end_time}}" data-default="{{pvi.actual_end_time}}" ng-model="pvi.actual_end_time">
+                <i class="input-action-addon ion-minus" hm-tap="editTime('actual_end_time', 'deduct')"></i>
+                <i class="input-action-addon ion-plus" hm-tap="editTime('actual_end_time', 'add')"></i>
+            </div>
+
+            <!-- Below is for non-editable close date and time fields should they be required instead
+
+            <!--<div class="input-label">Fin de service *</div>-->
+            <!--<div class="input-stacked input-group">-->
+                <!--<input type="text" value="{{task.actual_end_date}}" ng-model="task.actual_end_date" readonly>-->
+            <!--</div>-->
+
+            <!--<div class="input-stacked input-group">-->
+                <!--<input type="text" value="{{task.actual_end_time}}" ng-model="task.actual_end_time" readonly>-->
+            <!--</div>-->
+
+        </div>
+
+    </div>
+</div>
+
+</form>
+
+<div class="action-footer">
+    <div class="button button-balanced" hm-tap="validateClosePvi($event)">
+        <i class="ion-checkmark"></i>
+        {{text.AT_VALIDER}}
+    </div>
+</div>

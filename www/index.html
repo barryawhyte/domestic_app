@@ -5,30 +5,84 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
-    -->
 
-    <!-- ionic/angularjs js -->
+    <!-- ClockPicker Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-clockpicker.min.css">
+
+    <!-- Sweet alerts stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+
+    <!-- ionic/angular -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <script type="text/javascript" src="js/vendor/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- your app's js -->
-    <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
+    <!-- ClockPicker -->
+    <script type="text/javascript" src="js/vendor/bootstrap-clockpicker.min.js"></script>
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
+    <!-- DatePicker -->
+    <script type="text/javascript" src="js/vendor/ionic-datepicker.bundle.min.js"></script>
+
+    <!-- Sweet alerts -->
+    <script type="text/javascript" src="js/vendor/sweetalert.min.js"></script>
+
+    <!-- Digital signature library -->
+    <script type="text/javascript" src="js/vendor/signature_pad.min.js"></script>
+
+    <!-- Gesture library -->
+    <script type="text/javascript" src="js/vendor/hammer.min.js"></script>
+
+    <!-- angular modules -->
+    <script type="text/javascript" src="js/vendor/angular-hammer.min.js"></script>
+    <script type="text/javascript" src="js/vendor/angular-local-storage.min.js"></script>
+
+  </head>
+
+  <body ng-app="domapp">
+
+  <script type="text/javascript" src="./js/config.js?r=201606111119"></script>
+  <!-- fichier généré par gulp -->
+  <script type="text/javascript" src="js/domapp.js?r=201606111119"></script>
+
+  <header class="header">
+    <div id="page-header" class="bar bar-header">
+      <img src="img/Schneider_Electric.svg.png"/>
+      <h1 class="title">PVI online</h1>
+    </div>
+
+    <div id="view-header" class="bar bar-subheader" ng-show="showPviHeader()">
+      <div class="title">{{pviHeaderText()}}</div>
+    </div>
+  </header>
+
+  <ion-view>
+    <ion-content class="padding has-subheader has-footer" hm-tap="hideKeyPad($event)" delegate-handle="mainScroll">
+      <ion-scroll direction="y">
+
+      <div ui-view="login"></div>
+      <div ui-view="pviUserList"></div>
+      <div ui-view="pviOtherList"></div>
+      <div ui-view="pvi"></div>
+
+      </ion-scroll>
+    </ion-content>
+    <ion-digit-keyboard settings="keyboardSettings" ng-show="keyboardVisible"></ion-digit-keyboard>
+
+    <div class="tabs" ng-show="showTabs()">
+      <a class="tab-item" ng-class="{active: myPviNavTabIsActive()}" hm-tap="loadUserList($event)">
+        Mes PVIs
+      </a>
+      <a class="tab-item" ng-class="{active: otherPviNavTabIsActive()}" hm-tap="loadOtherList($event)">
+        Autres PVIs
+      </a>
+    </div>
+
+  </ion-view>
+
   </body>
 </html>

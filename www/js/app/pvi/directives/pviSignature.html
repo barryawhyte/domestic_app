@@ -1,0 +1,413 @@
+<div ng-show="!blockModel.block.signature_pad">
+    <div class="form-header">
+        <div class="row identification-main">
+            <div class="col col-70">{{pvi.mission_start_date}}</div>
+            <div class="col text-right">{{pvi.mission_start_time}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-70 identification-sub">{{pvi.final_customer_name}}</div>
+            <div class="col text-right identification-description">{{pvi.file_number}}</div>
+        </div>
+    </div>
+
+
+    <div class="show-part">
+        <div class="block-title">
+            <div class="title">{{text.AT_TETE_TITRE}}</div>
+            <i class="ion-edit button button-calm" hm-tap="changeState('tete_block')"></i>
+        </div>
+        <div class="block-values">
+            <div class="line">
+                <label>{{text.AT_NUMERO_DOSSIER}}</label>
+                <span class="value">{{pvi.file_number}}</span>
+            </div>
+
+            <div class="line">
+                <label>{{text.AT_CLIENT_ORDRE}}</label>
+                <span class="value">{{pvi.order_customer_name}}</span>
+            </div>
+
+            <div class="line">
+                <label>{{text.AT_CLIENT_FINAL}}</label>
+                <span class="value">{{pvi.final_customer_name}}</span>
+            </div>
+
+            <div class="line">
+                <label>{{text.AT_INTERVENTION_NATURE}}</label>
+                <ul class="value">
+                    <li ng-show="pvi.is_intervention_nature_quotation">{{text.AT_DEVIS}}</li>
+                    <li ng-show="pvi.is_intervention_nature_attachment">{{text.AT_ATTACHMENT}}</li>
+                    <li ng-show="pvi.is_intervention_nature_attachment && pvi.is_intervention_nature_no_guarantee">{{text.AT_HORS_GUARANTEE}}</li>
+                    <li ng-show="pvi.is_intervention_nature_attachment && pvi.is_intervention_nature_with_guarantee">{{text.AT_SOUS_GUARANTEE}}</li>
+                    <li ng-show="pvi.is_intervention_nature_other">{{text.AT_AUTRE}}</li>
+                </ul>
+                <label ng-show="pvi.is_intervention_nature_other">{{text.AT_AUTRE}}</label>
+                <span ng-show="pvi.is_intervention_nature_other" class="value">{{pvi.interventions_nature_other_text}}</span>
+            </div>
+
+            <div class="line">
+                <label>{{text.AT_DEBUT_INTERVENTION}}</label>
+                <span class="value">{{pvi.actual_start_date}} à {{pvi.actual_start_time}}</span>
+            </div>
+
+            <div class="line">
+                <label>{{text.AT_NB_INTERVENANTS}}</label>
+                <span class="value">{{pvi.ti_number}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="show-part">
+        <div class="block-title">
+            <div class="title">{{text.AT_MAIN_TITRE}}</div>
+            <i class="ion-edit button button-calm" hm-tap="changeState('main_block')"></i>
+        </div>
+        <div class="block-values">
+
+            <div class="item-card" ng-show="pvi.work_day">
+                <div class="title">
+                    <div>{{text.AT_JOUR_OUVRE}} - {{text.AT_TEMPS_PASSE}}</div>
+                </div>
+                <div class="sub-choice">
+                    <div class="line" ng-show="pvi.work_day_work_duration_day != '' && pvi.work_day_work_duration_day != null">
+                        <label>{{text.AT_8H_18H}}</label>
+                        <span class="value">{{pvi.work_day_work_duration_day}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.work_day_work_duration_evening_morning != '' && pvi.work_day_work_duration_evening_morning != null">
+                        <label>{{text.AT_8_22H_6_8H}}</label>
+                        <span class="value">{{pvi.work_day_work_duration_evening_morning}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.work_day_work_duration_night != '' && pvi.work_day_work_duration_night != null">
+                        <label>{{text.AT_22H_6H}}</label>
+                        <span class="value">{{pvi.work_day_work_duration_night}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.work_day_trip_duration != '' && pvi.work_day_trip_duration != null">
+                        <label>{{text.AT_HEURES_VOYAGE}}</label>
+                        <span class="value">{{pvi.work_day_trip_duration}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.work_day_mileage != '' && pvi.work_day_mileage != null">
+                        <label>{{text.AT_KILOMETRAGE}}</label>
+                        <span class="value">{{pvi.work_day_mileage}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.work_day_tolls != '' && pvi.work_day_tolls != null">
+                        <label>{{text.AT_PEAGES}}</label>
+                        <span class="value">{{pvi.work_day_tolls}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.work_day_expenses != '' && pvi.work_day_expenses != null">
+                        <label>{{text.AT_FRAIS}}</label>
+                        <span class="value">{{pvi.work_day_expenses}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card" ng-show="pvi.saturday">
+                <div class="title">
+                    <div>{{text.AT_SAMEDI}} - {{text.AT_TEMPS_PASSE}}</div>
+                </div>
+                <div class="sub-choice">
+                    <div class="line" ng-show="pvi.saturday_work_duration_day != '' && pvi.saturday_work_duration_day != null">
+                        <label>{{text.AT_8H_18H}}</label>
+                        <span class="value">{{pvi.saturday_work_duration_day}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.saturday_work_duration_evening_morning != '' && pvi.saturday_work_duration_evening_morning != null">
+                        <label>{{text.AT_8_22H_6_8H}}</label>
+                        <span class="value">{{pvi.saturday_work_duration_evening_morning}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.saturday_work_duration_night != '' && pvi.saturday_work_duration_night != null">
+                        <label>{{text.AT_22H_6H}}</label>
+                        <span class="value">{{pvi.saturday_work_duration_night}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.saturday_trip_duration != '' && pvi.saturday_trip_duration != null">
+                        <label>{{text.AT_HEURES_VOYAGE}}</label>
+                        <span class="value">{{pvi.saturday_trip_duration}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.saturday_mileage != '' && pvi.saturday_mileage != null">
+                        <label>{{text.AT_KILOMETRAGE}}</label>
+                        <span class="value">{{pvi.saturday_mileage}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.saturday_tolls != '' && pvi.saturday_tolls != null">
+                        <label>{{text.AT_PEAGES}}</label>
+                        <span class="value">{{pvi.saturday_tolls}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.saturday_expenses != '' && pvi.saturday_expenses != null">
+                        <label>{{text.AT_FRAIS}}</label>
+                        <span class="value">{{pvi.saturday_expenses}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item-card" ng-show="pvi.sunday_offday">
+                <div class="title">
+                    <div>{{text.AT_DIMANCHE}} - {{text.AT_TEMPS_PASSE}}</div>
+                </div>
+                <div class="sub-choice">
+                    <div class="line" ng-show="pvi.sunday_offday_work_duration_day != '' && pvi.sunday_offday_work_duration_day != null">
+                        <label>{{text.AT_8H_18H}}</label>
+                        <span class="value">{{pvi.sunday_offday_work_duration_day}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.sunday_offday_work_duration_evening_morning != '' && pvi.sunday_offday_work_duration_evening_morning != null">
+                        <label>{{text.AT_8_22H_6_8H}}</label>
+                        <span class="value">{{pvi.sunday_offday_work_duration_evening_morning}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.sunday_offday_work_duration_night != '' && pvi.sunday_offday_work_duration_night != null">
+                        <label>{{text.AT_22H_6H}}</label>
+                        <span class="value">{{pvi.sunday_offday_work_duration_night}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.sunday_offday_trip_duration != '' && pvi.sunday_offday_trip_duration != null">
+                        <label>{{text.AT_HEURES_VOYAGE}}</label>
+                        <span class="value">{{pvi.sunday_offday_trip_duration}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.sunday_offday_mileage != '' && pvi.sunday_offday_mileage != null">
+                        <label>{{text.AT_KILOMETRAGE}}</label>
+                        <span class="value">{{pvi.sunday_offday_mileage}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.sunday_offday_tolls != '' && pvi.sunday_offday_tolls != null">
+                        <label>{{text.AT_PEAGES}}</label>
+                        <span class="value">{{pvi.sunday_offday_tolls}}</span>
+                    </div>
+
+                    <div class="line" ng-show="pvi.sunday_offday_expenses != '' && pvi.sunday_offday_expenses != null">
+                        <label>{{text.AT_FRAIS}}</label>
+                        <span class="value">{{pvi.sunday_offday_expenses}}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="show-part">
+        <div class="block-title">
+            <div class="title">{{text.AT_ANOMALIES_TITRE}}</div>
+            <i class="ion-edit button button-calm" hm-tap="changeState('anomalies_block')"></i>
+        </div>
+        <div class="block-values">
+
+            <div class="line" ng-show="pvi.waiting_duration != '' && pvi.waiting_duration != null">
+                <label>{{text.AT_TEMPS_ATTENTE}}</label>
+                <span class="value">{{pvi.waiting_duration}}</span>
+            </div>
+
+            <div class="line" ng-show="pvi.waiting_duration_cause != '' && pvi.waiting_duration_cause != null">
+                <label>{{text.AT_CAUSE}}</label>
+                <span class="value">{{pvi.waiting_duration_cause}}</span>
+            </div>
+
+            <div class="line" ng-show="pvi.preparation_duration != '' && pvi.preparation_duration != null">
+                <label>{{text.AT_TEMPS_PREPARATION}}</label>
+                <span class="value">{{pvi.preparation_duration}}</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="show-part">
+        <div class="block-title">
+            <div class="title">{{text.AT_MATERIEL_TITRE}}</div>
+            <i class="ion-edit button button-calm" hm-tap="changeState('materiel_block')"></i>
+        </div>
+        <div class="block-values">
+
+            <div class="item-card" ng-repeat="material in pvi.materials">
+                <div class="title">
+                    <div>{{text.AT_MATERIEL}} {{material.line}}</div>
+                </div>
+                <div class="sub-choice">
+                    <div class="line">
+                    <label>{{text.AT_POSTE}}</label>
+                        <span class="value">{{material.elec_substation}}</span>
+                    </div>
+                    <div class="line">
+                        <label>{{text.AT_TABLEAU}}</label>
+                        <span class="value">{{material.elec_board}}</span>
+                    </div>
+                    <div class="line">
+                        <label>{{text.AT_FONCTION}}</label>
+                        <span class="value">{{material.function}}</span>
+                    </div>
+                    <div class="line">
+                        <label>{{text.AT_GAMME}}</label>
+                        <span class="value">{{material.material_info}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="show-part">
+        <div class="block-title">
+            <div class="title">{{text.AT_DETAIL_TITRE}}</div>
+            <i class="ion-edit button button-calm" hm-tap="changeState('detail_block')"></i>
+        </div>
+        <div class="block-values">
+
+            <div class="line">
+                <label>{{text.AT_INTERVENTION_REALISEE}}</label>
+                <ul class="value">
+                    <li ng-show="pvi.is_intervention_realised_maintenance">{{text.AT_MAINTENANCE}}</li>
+                    <li ng-show="pvi.is_intervention_realised_installation">{{text.AT_SERVICE}}</li>
+                    <li ng-show="pvi.is_intervention_realised_replacement">{{text.AT_REMPLACEMENT}}</li>
+                    <li ng-show="pvi.is_intervention_realised_assistance">{{text.AT_DEPANNAGE}}</li>
+                </ul>
+            </div>
+
+
+            <div class="line" ng-show="pvi.intervention_detail != '' && pvi.intervention_detail != null">
+                <label>{{text.AT_DETAIL_INTERVENTION}}</label>
+                <span class="value">{{pvi.intervention_detail}}</span>
+            </div>
+
+            <div class="line" ng-show="pvi.device_measure != '' && pvi.device_measure != null">
+                <label>{{text.AT_APPAREILS_MESURE}}</label>
+                <span class="value">{{pvi.device_measure}}</span>
+            </div>
+
+            <div class="line" ng-show="pvi.observation_ti != '' && pvi.observation_ti != null">
+                <label>{{text.AT_OBSERVATIONS_TI}}</label>
+                <span class="value">{{pvi.observation_ti}}</span>
+            </div>
+
+            <div class="line" ng-show="pvi.deadline != '' && pvi.deadline != null">
+                <label>{{text.AT_ECHEANCE_TRAVAUX}}</label>
+                <span class="value">{{pvi.deadline}}</span>
+            </div>
+
+        </div>
+    </div>
+
+    <form name="pviCloseForm" novalidate>
+
+    <div class="form-part" ng-class="{'form-part-invalid': validationSignature.signature_block.error, 'form-part-completed': validationSignature.signature_block.complete}">
+        <div class="block-title">
+            <div class="title">{{text.AT_SIGNATURE_TITRE}}</div>
+        </div>
+        <div class="inputs">
+
+            <div class="item item-input item-stacked-label" ng-class="{'error': validationSignature.client_satisfaction_level.error}">
+                <div class="input-label">{{text.AT_CLIENT_SATISFACTION}} *</div>
+                <div class="row">
+                    <div class="col radio-10 client-satisfaction-level-1">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'1'">1</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-2">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'2'">2</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-3">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'3'">3</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-4">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'4'">4</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-5">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'5'">5</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-6">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'6'">6</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-7">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'7'">7</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-8">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'8'">8</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-9">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'9'">9</ion-radio>
+                    </div>
+                    <div class="col radio-10 client-satisfaction-level-10">
+                        <ion-radio name="client_satisfaction_level" ng-model="pvi.client_satisfaction_level" ng-value="'10'">10</ion-radio>
+                    </div>
+                </div>
+            </div>
+
+            <label class="item item-input item-stacked-label">
+                <div class="input-label">{{text.AT_OBSERVATION_CLIENT}}</div>
+                <textarea ng-model="pvi.observation_client">{{pvi.observation_client}}</textarea>
+            </label>
+
+            <label class="item item-input item-stacked-label" ng-class="{'error': validationSignature.work_responsible_name.error}">
+                <div class="input-label">{{text.AT_CHARGES_TRAVAUX}} *</div>
+                <input ng-model="pvi.work_responsible_name" type="text" value="{{pvi.work_responsible_name}}">
+            </label>
+
+
+            <label id="ti" class="item item-input item-stacked-label" ng-class="{'error': validationSignature.ti_signature_data.error}">
+                <div class="input-label">{{text.AT_SIGNATURE_TI}} *</div>
+                <div class="row" ng-show="pvi.ti_signature_data !== null">
+                    <div class="col">
+                        <img class="signature-view" data-ng-src="{{pvi.ti_signature_data}}" />
+                    </div>
+                </div>
+                <div class="button button-full" hm-tap="addSignature('ti')"
+                     ng-class="{'signature-button-complete': pvi.ti_signature_data !== null, 'button-calm': pvi.ti_signature_data === null}">
+                    <i class="icon-signature" ng-class="{'ion-checkmark': pvi.ti_signature_data !== null}"></i>
+                    {{text.AT_AJOUTER_SIGNATURE}}
+                </div>
+            </label>
+
+
+            <label class="item item-input item-stacked-label" ng-class="{'error': validationSignature.contact_name.error}">
+                <div class="input-label">{{text.AT_CLIENT_NOM}} *</div>
+                <input ng-model="pvi.contact_name" type="text" value="{{pvi.contact_name}}">
+            </label>
+
+            <label class="item item-input item-stacked-label" ng-class="{'error': validationSignature.contact_company_name.error}">
+                <div class="input-label">{{text.AT_CLIENT_ENTREPRISE}} *</div>
+                <input ng-model="pvi.contact_company_name" type="text" value="{{pvi.contact_company_name}}">
+            </label>
+
+            <label class="item item-input item-stacked-label" ng-class="{'error': validationSignature.contact_phone.error}">
+                <div class="input-label">{{text.AT_CLIENT_TELEPHONE}} *</div>
+                <input ng-model="pvi.contact_phone" type="text" value="{{pvi.contact_phone}}">
+            </label>
+
+            <label class="item item-input item-stacked-label"
+                   ng-class="{'error': validationSignature.contact_email.error, 'error': validationSignature.contact_email.error_format}">
+                <div class="input-label">{{text.AT_CLIENT_EMAIL}} *</div>
+                <input ng-model="pvi.contact_email" type="text" value="{{pvi.contact_email}}">
+                <p class="error-message" ng-show="validationSignature.contact_email.error_format">{{text.AT_CLIENT_EMAIL_ERREUR}}</p>
+            </label>
+
+            <label id="client" class="item item-input item-stacked-label" ng-class="{'error': validationSignature.client_signature_data.error}">
+                <div class="input-label">{{text.AT_SIGNATURE_CLIENT}} *</div>
+                <div class="row" ng-show="pvi.client_signature_data !== null">
+                    <div class="col">
+                        <img class="signature-view" data-ng-src="{{pvi.client_signature_data}}" />
+                    </div>
+                </div>
+                <div class="button button-full" hm-tap="addSignature('client')"
+                     ng-class="{'signature-button-complete': pvi.client_signature_data !== null, 'button-calm': pvi.client_signature_data === null}">
+                    <i class="icon-signature" ng-class="{'ion-checkmark': pvi.client_signature_data !== null}"></i>
+                    {{text.AT_AJOUTER_SIGNATURE}}
+                </div>
+            </label>
+
+        </div>
+    </div>
+    </form>
+
+    <div class="action-footer">
+        <div class="button button-balanced" hm-tap="validateSignaturePvi($event)">
+            <i class="ion-checkmark"></i>
+            {{text.AT_VALIDER_SIGNATURE}}
+        </div>
+    </div>
+</div>
+
+<pvi-signature-pad ng-show="blockModel.block.signature_pad"></pvi-signature-pad>

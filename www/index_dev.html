@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <!-- ClockPicker Stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-clockpicker.min.css">
+
+    <!-- Sweet alerts stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+
+    <!-- ionic/angular -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <script type="text/javascript" src="js/vendor/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- ClockPicker -->
+    <script type="text/javascript" src="js/vendor/bootstrap-clockpicker.min.js"></script>
+
+    <!-- DatePicker -->
+    <script type="text/javascript" src="js/vendor/ionic-datepicker.bundle.min.js"></script>
+
+    <!-- Sweet alerts -->
+    <script type="text/javascript" src="js/vendor/sweetalert.min.js"></script>
+
+    <!-- Digital signature library -->
+    <script type="text/javascript" src="js/vendor/signature_pad.min.js"></script>
+
+    <!-- Gesture library -->
+    <script type="text/javascript" src="js/vendor/hammer.min.js"></script>
+
+    <!-- angular modules -->
+    <script type="text/javascript" src="js/vendor/angular-hammer.min.js"></script>
+    <script type="text/javascript" src="js/vendor/angular-local-storage.min.js"></script>
+
+  </head>
+
+  <body ng-app="domapp">
+
+  <!-- config application -->
+  <script type="text/javascript" src="js/config.js?r=1.0"></script>
+
+  <!-- application -->
+  <script type="text/javascript" src="js/app/module.js"></script>
+  <script type="text/javascript" src="js/app/constants.js"></script>
+  <script type="text/javascript" src="js/app/text.js"></script>
+  <script type="text/javascript" src="js/app/config.js"></script>
+  <script type="text/javascript" src="js/app/init.js"></script>
+
+  <!-- common -->
+  <script type="text/javascript" src="js/app/common/services/alertService.js"></script>
+  <script type="text/javascript" src="js/app/common/services/communicationService.js"></script>
+  <script type="text/javascript" src="js/app/common/services/connectionService.js"></script>
+  <script type="text/javascript" src="js/app/common/services/httpInterceptorService.js"></script>
+  <script type="text/javascript" src="js/app/common/services/helperService.js"></script>
+  <script type="text/javascript" src="js/app/common/services/persistenceService.js"></script>
+  <script type="text/javascript" src="js/app/common/directives/tabsDirective.js"></script>
+  <script type="text/javascript" src="js/app/common/directives/headerDirective.js"></script>
+
+  <!-- login -->
+  <script type="text/javascript" src="js/app/login/controllers/loginController.js"></script>
+  <script type="text/javascript" src="js/app/login/directives/loginDirective.js"></script>
+  <script type="text/javascript" src="js/app/login/services/loginCommunicationService.js"></script>
+
+  <!-- task -->
+  <script type="text/javascript" src="js/app/task/controllers/taskController.js"></script>
+  <script type="text/javascript" src="js/app/task/models/taskModel.js"></script>
+  <script type="text/javascript" src="js/app/task/services/taskLocalService.js"></script>
+  <script type="text/javascript" src="js/app/task/services/taskCommunicationService.js"></script>
+  <script type="text/javascript" src="js/app/task/directives/taskListDirective.js"></script>
+  <script type="text/javascript" src="js/app/task/directives/taskListItemDirective.js"></script>
+
+  <!-- user -->
+  <script type="text/javascript" src="js/app/user/models/userModel.js"></script>
+  <script type="text/javascript" src="js/app/user/services/userLocalService.js"></script>
+
+  <header class="header">
+    <div id="page-header" class="bar bar-header">
+      <!--<img src="img/Schneider_Electric.svg.png"/>-->
+      <h1 class="title">Domestic TODO App</h1>
+        <button value="sign out" hm-tap="signOut($event)">Sign out</button>
+    </div>
+
+    <div class="tabs" ng-show="showTabs()">
+      <a class="tab-item" ng-class="{active: employeeNavTabIsActive()}" hm-tap="loadEmployeeList($event)">
+          Employees
+      </a>
+      <a class="tab-item" ng-class="{active: taskNavTabIsActive()}" hm-tap="loadTaskList($event)">
+          Tasks
+      </a>
+      <a class="tab-item" ng-class="{active: roomNavTabIsActive()}" hm-tap="loadRoomList($event)">
+          Rooms
+      </a>
+    </div>
+  </header>
+
+  <ion-view>
+    <ion-content class="padding has-subheader has-footer" delegate-handle="mainScroll">
+      <ion-scroll direction="y">
+
+          <div ui-view="login"></div>
+          <!--<div ui-view="employeeList"></div>-->
+          <!--<div ui-view="taskList"></div>-->
+          <!--<div ui-view="roomList"></div>-->
+          <!--<div ui-view="employee"></div>-->
+          <!--<div ui-view="task"></div>-->
+          <!--<div ui-view="room"></div>-->
+
+      </ion-scroll>
+    </ion-content>
+  </ion-view>
+
+  </body>
+</html>

@@ -12376,6 +12376,7 @@ IonicModule
           'value': attr.value,
           'disabled': attr.disabled,
           'ng-value': attr.ngValue,
+          'ng-checked': attr.ngChecked,
           'ng-model': attr.ngModel,
           'ng-disabled': attr.ngDisabled,
           'ng-change': attr.ngChange,

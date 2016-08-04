@@ -1,0 +1,75 @@
+<div class="form-part" ng-class="{'form-part-invalid': validationTete.tete_block.error, 'form-part-completed': validationTete.tete_block.complete}">
+    <div class="block-title" id="tete_block" hm-tap="toggleBlock('tete_block')">
+        <div class="title">{{text.AT_TETE_TITRE}}</div>
+        <i ng-class="isBlockDisplayed('tete_block') ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+    </div>
+    <div class="inputs" ng-show="isBlockDisplayed('tete_block')">
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationTete.file_number.error}">
+            <div class="input-label">{{text.AT_NUMERO_DOSSIER}} *</div>
+            <input type="text" ng-model="pvi.file_number" value="{{pvi.file_number}}" ng-readonly="!pvi.blank">
+        </label>
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationTete.order_customer_name.error}">
+            <div class="input-label">{{text.AT_CLIENT_ORDRE}} *</div>
+            <input type="text" ng-model="pvi.order_customer_name" value="{{pvi.order_customer_name}}" ng-readonly="!pvi.blank">
+        </label>
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationTete.final_customer_name.error}">
+            <div class="input-label">{{text.AT_CLIENT_FINAL}} *</div>
+            <input type="text" ng-model="pvi.final_customer_name" value="{{pvi.final_customer_name}}" ng-readonly="!pvi.blank">
+        </label>
+
+        <div class="item item-input item-stacked-label" ng-class="{'error': validationTete.interventions_nature.error}">
+
+            <div class="input-label">{{text.AT_INTERVENTION_NATURE}} *</div>
+            <ion-checkbox ng-model="pvi.is_intervention_nature_quotation" value="{{pvi.is_intervention_nature_quotation}}">{{text.AT_DEVIS}}</ion-checkbox>
+            <ion-checkbox ng-model="pvi.is_intervention_nature_attachment" value="{{pvi.is_intervention_nature_attachment}}">{{text.AT_ATTACHMENT}}</ion-checkbox>
+            <ion-checkbox ng-show="pvi.is_intervention_nature_attachment"
+                          ng-model="pvi.is_intervention_nature_no_guarantee"
+                          class="sub-choice"
+                          value="{{pvi.is_intervention_nature_no_guarantee}}">{{text.AT_HORS_GUARANTEE}}</ion-checkbox>
+            <ion-checkbox ng-show="pvi.is_intervention_nature_attachment"
+                          ng-model="pvi.is_intervention_nature_with_guarantee"
+                          class="sub-choice"
+                          value="{{pvi.is_intervention_nature_with_guarantee}}">{{text.AT_SOUS_GUARANTEE}}</ion-checkbox>
+            <ion-checkbox ng-model="pvi.is_intervention_nature_other" value="{{pvi.is_intervention_nature_other}}">{{text.AT_AUTRE}}</ion-checkbox>
+
+            <label ng-show="pvi.is_intervention_nature_other" class="item item-input item-stacked-label ">
+                <div class="input-label">{{text.AT_AUTRE}} *</div>
+                <input ng-model="pvi.interventions_nature_other_text" type="text" value="{{pvi.interventions_nature_other_text}}">
+            </label>
+
+        </div>
+
+        <div class="item item-input item-stacked-label">
+
+            <div class="input-label">{{text.AT_DEBUT_INTERVENTION}} *</div>
+            <div class="input-stacked" ng-class="{'error': validationTete.actual_start_date.error}">
+                <i class="input-action-addon ion-android-calendar" hm-tap="openDatePicker('actual_start_date')"></i>
+                <input type="text" value="{{pvi.actual_start_date}}" ng-model="pvi.actual_start_date" hm-tap="openDatePicker('actual_start_date')" readonly>
+                <i class="input-action-addon ion-minus" hm-tap="editDay('actual_start_date', 'deduct')"></i>
+                <i class="input-action-addon ion-plus" hm-tap="editDay('actual_start_date', 'add')"></i>
+            </div>
+
+            <div class="input-stacked input-group clockpicker_actual_start_time" data-placement="top" data-align="middle" data-autoclose="true">
+                <i class="input-group-addon input-action-addon ion-android-time"></i>
+                <input id="actual_start_time" type="text" value="{{pvi.actual_start_time}}" data-default="{{pvi.actual_start_time}}" ng-model="pvi.actual_start_time">
+                <i class="input-action-addon ion-minus" hm-tap="editTime('actual_start_time', 'deduct')"></i>
+                <i class="input-action-addon ion-plus" hm-tap="editTime('actual_start_time', 'add')"></i>
+            </div>
+
+        </div>
+
+        <div class="item item-input item-stacked-label">
+
+            <div class="input-label">{{text.AT_FIN_INTERVENTION}}</div>
+        </div>
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationTete.ti_number.error}">
+            <div class="input-label">{{text.AT_NB_INTERVENANTS}} *</div>
+            <input type="number" value="{{pvi.ti_number}}" ng-model="pvi.ti_number">
+        </label>
+
+    </div>
+</div>

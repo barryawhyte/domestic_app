@@ -1,0 +1,49 @@
+<div class="form-part" ng-class="{'form-part-invalid': validationMateriel.materiel_block.error, 'form-part-completed': validationMateriel.materiel_block.complete}">
+    <div class="block-title" id="materiel_block" hm-tap="toggleBlock('materiel_block')">
+        <div class="title">{{text.AT_MATERIEL_TITRE}}</div>
+        <i ng-class="isBlockDisplayed('materiel_block') ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+    </div>
+    <div class="inputs" ng-show="isBlockDisplayed('materiel_block')">
+        <div class="item item-input item-stacked-label">
+            <div class="input-label">{{text.AT_REPORT_TECHNIQUE}} *</div>
+
+            <div class="row ">
+                <div class="col radio-50">
+                    <ion-radio name="has_technical_report" ng-model="pvi.has_technical_report" ng-value="true">{{text.AT_OUI}}</ion-radio>
+                </div>
+                <div class="col radio-50">
+                    <ion-radio name="has_technical_report" ng-model="pvi.has_technical_report" ng-value="false">{{text.AT_NON}}</ion-radio>
+                </div>
+            </div>
+
+            <div class="item-card" ng-repeat="material in pvi.materials">
+                <div class="title">
+                    <div>{{text.AT_MATERIEL}} {{material.line}}</div>
+                    <i class="card-action ion-android-delete" hm-tap="removeMaterial(material.line)"></i>
+                </div>
+                <div class="sub-choice">
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMateriel.elec_substation['line_' + material.line].error}">
+                        <div class="input-label">{{text.AT_POSTE}}</div>
+                        <input type="text" value="{{material.elec_substation}}" ng-model="material.elec_substation">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMateriel.elec_board['line_' + material.line].error}">
+                        <div class="input-label">{{text.AT_TABLEAU}}</div>
+                        <input type="text" value="{{material.elec_board}}" ng-model="material.elec_board">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMateriel.function['line_' + material.line].error}">
+                        <div class="input-label">{{text.AT_FONCTION}}</div>
+                        <input type="text" value="{{material.function}}" ng-model="material.function">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMateriel.material_info['line_' + material.line].error}">
+                        <div class="input-label">{{text.AT_GAMME}}</div>
+                        <input type="text" value="{{material.material_info}}" ng-model="material.material_info">
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="button button-calm col-60" hm-tap="addMaterial()"> {{text.AT_AJOUTER_MATERIEL}}</div>
+            </div>
+        </div>
+    </div>
+</div>

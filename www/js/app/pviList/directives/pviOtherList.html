@@ -1,0 +1,12 @@
+<div class="data-loader" ng-show="showDataLoader">
+    <ion-spinner class="android"></ion-spinner>
+    <p>{{text.AT_TELECHARGEMENT_VOS_PVIS}}</p>
+</div>
+
+<div class="list pvi-list pvi-other-list">
+    <div class="pvi-item pvi-other-list-item" ng-repeat="pvi in pvi | orderBy: ['pvi.mission_start_date', 'pvi.mission_start_time']: true" hm-tap="pviOtherTap($event)">
+    </div>
+</div>
+
+<div class="action-footer">
+</div>

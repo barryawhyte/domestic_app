@@ -1,23 +1,1016 @@
-/*
-To customize the look and feel of Ionic, you can override the variables
-in ionic's _variables.scss file.
 
-For example, you might change some of the default colors:
 
-$light:                           #fff !default;
-$stable:                          #f8f8f8 !default;
-$positive:                        #387ef5 !default;
-$calm:                            #11c1f3 !default;
-$balanced:                        #33cd5f !default;
-$energized:                       #ffc900 !default;
-$assertive:                       #ef473a !default;
-$royal:                           #886aea !default;
-$dark:                            #444 !default;
-*/
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
+$pvi-font-path: "../fonts" !default;
 
-// Include all of Ionic
+//les variables de ionics, surchargées (ou non)
+@import "surcharge_variables";
+//les icones custom
+@import "icon-pvi";
+//la css de la lib, pure
 @import "www/lib/ionic/scss/ionic";
+
+
+/*
+ * Polices et font
+ */
+//Titres et sous titres au dessus de 12pt doit utiliser Arial Rounded
+@font-face {
+  font-family: "title";
+  src: url('../fonts/arial-rounded-bold.ttf?v=#{$pvi-icon-version}');
+}
+//le contenu doit utiliser Arial mt
+@font-face {
+  font-family: "content";
+  src: url('../fonts/arial-mt-light.ttf?v=#{$pvi-icon-version}');
+}
+//en italic on utilise la version regular sinon ca se voit pas assez
+@font-face {
+  font-family: "content";
+  font-style: italic;
+  src: url('../fonts/arial-mt-regular.ttf?v=#{$pvi-icon-version}');
+}
+//en bold on utilise la version regular ca va mieux aussi
+@font-face {
+  font-family: "content";
+  font-weight: bold;
+  src: url('../fonts/arial-mt-regular.ttf?v=#{$pvi-icon-version}');
+}
+@mixin font-title() {
+  font-family: "title" , Arial, sans-serif;
+}
+@mixin font-content() {
+  font-family: "content" , Arial, sans-serif;
+
+}
+@mixin text-small {
+  font-size: $font-size-small;
+}
+@mixin text-large {
+  font-size: $font-size-large;
+}
+// --------------------------------fin polices --------------------------------
+
+
+
+/*
+  Allow angular.js to be loaded in body, hiding cloaked elements until
+  templates compile.  The !important is important given that there may be
+  other selectors that are more specific or come later and might alter display.
+ */
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+
+/**
+ *         COMPOSANTS
+ */
+body {
+  @include font-content;
+}
+html, body {
+  width:  100%;
+  height: 100%;
+  margin: 0px;
+}
+//header
+body > header{
+  //titre de l'appli
+  #page-header {
+    .title {
+      color: $clr-SE-LogoGreen;
+      @include font-title;
+      @include text-large;
+    }
+    img {
+      height: 30px;
+      float: left;
+      margin-top: 3px;
+    }
+  }
+  //Sous titre: titre de la page
+  #view-header {
+    background-color: $clr-SE-LifeGreen;
+    color: #fff;
+    .title {
+      padding: 0 5px ;
+      text-align: left;
+      @include font-title;
+      @include text-large;
+    }
+  }
+}
+
+
+
+
+//-------------      Liste PVI        --------------
+.pvi-list {
+
+  .column-main-action {
+    width: 50px;
+    background-color: $action-clr-bg;
+    color: #fff;
+
+    .parent-vertical-align-center {
+      //display: block;
+      position: relative;
+      height: 100%;
+
+      i {
+        position: absolute;
+        top: 25%;
+        left: 25%;
+
+      }
+    }
+  }
+
+  .card-content {
+    padding: 5px 5px 5px 10px;
+  }
+
+  .pvi-item {
+    &:active {
+      .column-main-action {
+        background-color: $action-clr-bg-active;
+      }
+    }
+    background-color: $light;
+    padding: 5px;
+    display: table;
+    table-layout: fixed;
+    width:100%;
+  }
+
+  .pvi-item-list {
+    background-color: $stable;
+    display: table-row;
+    & > div {
+      display: table-cell;
+      &.card-content {
+
+      }
+      &.column-main-action {
+        vertical-align: middle;
+        text-align: center;
+        width:45px;
+      }
+    }
+  }
+  .card-title {
+    font-weight: bold;
+    color: $clr-SE-GreyDark;
+  }
+  .card-subtitle {
+    color: $clr-SE-GreyDark;
+    text-transform: uppercase;
+  }
+  .card-description {
+    color: $clr-SE-GreyLight;
+    @include text-small;
+  }
+  .mission-code {
+    text-transform: uppercase;
+  }
+  .warning {
+    color: $clr-SE-Orange;
+    .icon {
+      padding-right: 5px;
+    }
+  }
+
+}
+
+//-------------      Loader        --------------
+.data-loader {
+  display:table;
+  color : $clr-SE-GreyLight;
+  .spinner {
+    display:table-cell;
+    vertical-align: middle;
+    width: 35px;
+  }
+  p {
+    display:table-cell;
+    vertical-align: middle;
+    font-style: italic;
+    padding:  0 5px  ;
+    @include text-small;
+  }
+  margin-bottom: 5px;
+}
+
+//--------- form header -------------
+.form-header {
+  .identification-main {
+    font-weight: bold;
+    color: $clr-SE-GreyDark;
+  }
+  .identification-sub{
+    color: $clr-SE-GreyDark;
+  }
+  .identification-description{
+    color: $clr-SE-GreyLight;
+  }
+}
+
+//---------- block title block
+.form-part, .show-part {
+  margin-bottom: 15px;
+
+
+  &.form-part-completed {
+    .block-title {
+      background-color: $clr-validation-valid-bg;
+    }
+  }
+  &.form-part-invalid {
+    .block-title {
+      background-color: $clr-validation-error-bg;
+    }
+  }
+
+
+  .block-title {
+    display: table;
+    width:100%;
+    > .title, > i {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+
+    padding: 15px;
+
+    background-color: $clr-XTL-greyLight;
+
+    i{
+      width:20px;
+      text-align: center;
+    }
+    .title {
+      @include font-content;
+      font-weight: bold;
+      padding: 5px;
+      color: #222;
+    }
+  }
+}
+
+//--------- show -------------
+.show-part {
+  background-color: $stable;
+
+  .line {
+    padding: 5px 10px;
+    > label {
+      display: block;
+      //font-size: 12pt;
+      color: $dark;
+
+    }
+    > .value {
+      display: block;
+      //text-align: right;
+      color: $clr-SE-GreyDark;
+      //font-size: 13pt;
+      font-weight: bold;
+    }
+  }
+  .item-card {
+    background-color: $light;
+    margin: 5px 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    .title {
+      //font-size: 13pt;
+      font-style: italic;
+      padding: 5px 10px;
+      background-color: $stable;
+      color: $dark;
+      border-bottom: 1px solid $clr-XTL-greyLight;
+    }
+    //border: 1px solid $clr-XTL-greyLight;
+  }
+}
+//-------- page footer
+.action-footer {
+  margin-bottom: 15px;
+  padding-bottom: 50px;
+  .button {
+    i {
+      margin-right: 5px;
+    }
+    width:100%;
+  }
+}
+
+//-------- sub-header for actions
+.action-header {
+  .button {
+    i {
+      margin-right: 5px;
+    }
+    width:100%;
+  }
+}
+
+//--------- signature pad and buttons
+#signature-pad {
+
+  text-align: center;
+  overflow-y: hidden;
+  canvas {
+    border: 0.5px solid darkgray;
+  }
+  .row {
+    padding: 0;
+    margin: 0;
+    .col {
+      padding: 0;
+      margin: 0;
+      .button {
+        width: 100px
+      }
+    }
+  }
+}
+
+.signature-button-complete {
+
+  background-color: $clr-validation-valid-bg;
+}
+
+.signature-view {
+
+  width: 300px;
+  height: 200px;
+}
+
+//--------- form -------------
+$border-subchoice-width: 20px;
+.form-part {
+    background-color: $stable;
+
+    .inputs {
+      border: 1px solid $stable;
+      padding: 0 5px;
+
+      input {
+        border-bottom: 1px solid $action-clr-bg;
+        color: $clr-SE-GreyLight;
+        &:focus {
+          border-color: $action-clr-bg-active;
+        }
+      }
+      > label {
+        color: $clr-SE-GreyDark;
+      }
+      > .item-input, .sub-choice > .item-input {
+        padding: 10px 5px 10px 5px;
+      }
+      > .item,  {
+        margin: 5px 0px;
+      }
+    }
+
+    .input-label {
+      font-size: 13pt;
+      color:black;
+      padding: 5px 0 ;
+    }
+
+    .inputs > .item {
+      border-style: hidden;
+    }
+    .sub-choice > .item {
+      border: none;
+      border-right: 1px solid $clr-XTL-greyLight;
+      &:last-of-type {
+        border-bottom: 1px solid $clr-XTL-greyLight;
+      }
+    }
+
+
+    //si deux inputs se suivent, on ajoute un margin entre ces deux inputs
+    .input-stacked + .input-stacked {
+      margin-top: 15px;
+    }
+
+
+
+
+    .error {
+      &.item {
+        border-left: 5px solid $clr-validation-error;
+      }
+      input {
+        border-color: $clr-validation-error;
+      }
+      .error-message {
+        color: $clr-validation-error;
+        font-style: italic;
+      }
+    }
+
+    .item.item-radio {
+      padding: 0;
+      .item-content {
+        padding: 10px;
+      }
+      .radio-icon{
+        padding: 10px;
+      }
+    }
+
+    .item.item-checkbox {
+        &:first-of-type {
+            margin-top: 5px;
+        }
+        padding: 15px;
+        padding-left: 50px;
+        &.sub-choice, .sub-choice, & + .sub-choice:not(.item-checkbox) {
+        border-left: $border-subchoice-width solid $clr-XTL-greyLight;
+      }
+    }
+    .sub-choice-title, .item-card .title {
+      background-color: $clr-XTL-greyLightest;
+      font-style: italic;
+      padding: 5px 5px 5px 10px;
+      border-right: 1px solid $clr-XTL-greyLight;
+      border-left: $border-subchoice-width solid $clr-XTL-greyLight;
+      margin: -1px
+    }
+    .sub-choice {
+      border-left: $border-subchoice-width solid $clr-XTL-greyLight;
+      margin-left: -1px;
+    }
+
+
+
+
+    .input-stacked {
+      .input-action-addon:active, .input-action-addon.active {
+          background-color: $action-clr-bg-active;
+      }
+
+      .input-action-addon {
+        background-color: $action-clr-bg;
+        color: white;
+        font-size: 1.5em;
+        width: $btn-minimum-size;
+        border-radius: 0;
+        &:first-child {
+          border-bottom-left-radius: 2px;
+          border-top-left-radius: 2px;
+        }
+        &:last-child {
+          border-top-right-radius: 2px;
+          border-bottom-right-radius: 2px;
+        }
+        & +.input-action-addon {
+          border-left: 1px white solid;
+        }
+
+      }
+
+    }
+
+  .item-card {
+    margin: 15px 0;
+    .card-action {
+
+      &:active, &.active {
+        background-color: $action-clr-bg-active;
+      }
+      text-align: center;
+      background-color: $action-clr-bg;
+      color: white;
+      font-size: 1.5em;
+      width: 50px;
+      border-radius: 0;
+
+
+    }
+
+  }
+}
+
+.client-satisfaction-level-1,
+.client-satisfaction-level-2,
+.client-satisfaction-level-3,
+.client-satisfaction-level-4,
+.client-satisfaction-level-5,
+.client-satisfaction-level-6{
+  width: 10%;
+  padding: 0;
+  .item.item-radio{
+    .radio-content{
+      .item-content{
+        background-color: #E47F00;
+      }
+      .radio-icon{
+        left: -5px;
+        right: auto;
+        background-color: #E47F00;
+      }
+    }
+  }
+}
+
+.client-satisfaction-level-7,
+.client-satisfaction-level-8{
+  width: 10%;
+  padding: 0;
+  .item.item-radio{
+    .radio-content{
+      .item-content{
+        background-color: #FFD100;
+      }
+      .radio-icon {
+        left: -5px;
+        right: auto;
+        background-color: #FFD100;
+      }
+    }
+  }
+}
+
+.client-satisfaction-level-9,
+.client-satisfaction-level-10{
+  width: 10%;
+  padding: 0;
+  .item.item-radio{
+    .radio-content{
+      .item-content{
+        background-color: #3DCD58;
+      }
+      .radio-icon{
+        left:-5px;
+        right: auto;
+        background-color: #3DCD58;
+      }
+    }
+  }
+}
+
+
+/*
+ * Généralités de formulaire : sans style, seulement la structure (éviter les paddings et margin autres que 0)
+ */
+form {
+  //radio bouton oui/non sur une ligne
+  .radio-50 .item-radio .radio-icon {
+    top: -5px; //on aligne
+  }
+
+  .input-stacked {
+    display: table;
+    width: 100%;
+
+    > .input-action-addon, > input {
+      display: table-cell;
+    }
+    .input-action-addon {
+      vertical-align: middle;
+      text-align: center;
+    }
+  }
+
+  .item-card {
+
+    .item {
+      margin: 0;
+    }
+
+    .title {
+      margin: 0;
+      display: table;
+      width: 100%;
+
+      > div, > .card-action {
+        display: table-cell;
+        vertical-align: middle;
+      }
+      .card-action {
+        height: 35px;
+        width: 60px;
+      }
+
+    }
+  }
+}
+
+/*
+ * Nouvelles classes ou surcharges IONIC impossible dans les variables sass de base
+ */
+form{
+  .item-input {
+    padding: 16px 5px;
+  }
+  textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    padding-left: 5px;
+  }
+  .item-radio input:checked + .radio-content .item-content {
+    background-color: $light;
+  }
+}
+
+.icon-lg {
+  font-size: 2em;
+}
+.icon-md {
+  font-size: 1em;
+}
+
+.tab-item.active {
+  font-weight: bold;
+}
+
+.row.row-without-paddings {
+  padding: 0;
+  > .col {
+    padding:0;
+  }
+}
+
+
+.col-15 {
+  flex: 0 0 15%;
+  max-width: 15%;
+}
+.col-70 {
+  flex: 0 0 70%;
+  max-width: 70%;
+}
+
+.popover {
+  opacity: 1!important;
+}
+
+////Numeric keypad
+$dk-bg-color: transparent;
+$dk-btn-border-size: 1px;
+$dk-btn-height: 60px;
+$dk-btn-font-size: 24px;
+
+// Private variables (mostly default)
+$dk-btn-bg-color: #ccc;
+$dk-btn-border-color: #333;
+$dk-btn-text-color: #333;
+$dk-btn-action-color: #333;
+$dk-btn-click-bg-color: #ddd;
+$dk-btn-click-text-color: #444;
+
+$light: #fff !default;
+$stable: #f8f8f8 !default;
+$positive: #387ef5 !default;
+$calm: #11c1f3 !default;
+$balanced: #33cd5f !default;
+$energized: #ffc900 !default;
+$assertive: #ef473a !default;
+$royal: #886aea !default;
+$dark: #444 !default;
+$opaque-black: rgba(#000, 0.75);
+$opaque-white: rgba(#fff, 0.75);
+
+.digit-keyboard {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: $dk-bg-color;
+  font-size: $dk-btn-font-size;
+  z-index: 5000;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  // Row
+  .digit-keyboard-row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: $dk-btn-border-size solid $dk-btn-border-color;
+
+    // Wrapper
+    .digit-keyboard-key-wrapper {
+      flex: 1;
+      text-align: center;
+      position: relative;
+      height: $dk-btn-height;
+
+      // Key
+      .digit-keyboard-key {
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        left: 0; top: 0; right: 0; bottom: 0;
+        border-right: $dk-btn-border-size solid $dk-btn-border-color;
+        border-left: $dk-btn-border-size solid $dk-btn-border-color;
+        //background: $dk-btn-bg-color;
+        //color: $dk-btn-text-color;
+        line-height: $dk-btn-height;
+
+        -webkit-transition: background-color 100ms linear;
+        -moz-transition: background-color 100ms linear;
+        -o-transition: background-color 100ms linear;
+        -ms-transition: background-color 100ms linear;
+        transition: background-color 100ms linear;
+
+        // Number
+        .digit-keyboard-key-number {
+          font-size: 1em;
+          vertical-align: middle;
+          display: inline-block;
+          line-height: normal;
+          text-align: center;
+          margin-top: -0.40em;
+
+          // Letters
+          .digit-keyboard-key-letters {
+            font-size: (($dk-btn-font-size*40)/100);
+            line-height: (($dk-btn-font-size*40)/100);
+            height: (($dk-btn-font-size*40)/100);
+            margin-top: -0.25em;
+
+            &.hidden {
+              visibility: hidden;
+            }
+          }
+        }
+
+        // Action
+        .digit-keyboard-key-action {
+          position: absolute;
+          left: 0; top: 0; right: 0; bottom: 0;
+          line-height: $dk-btn-height;
+          font-size: $dk-btn-font-size;
+        }
+
+        /*&.activated {
+            //background: $dk-btn-click-bg-color;
+
+            .digit-keyboard-key-number {
+                //color: $dk-btn-click-text-color;
+            }
+        }*/
+      }
+
+      &.hidden {
+        visibility: hidden;
+      }
+
+      &:first-child .digit-keyboard-key {
+        border-right: none;
+      }
+
+      &:last-child .digit-keyboard-key {
+        border-left: none;
+
+      }
+    }
+
+    &:first-child {
+      border-top: $dk-btn-border-size solid $dk-btn-border-color;
+    }
+
+    &:last-child {
+      border: none;
+
+      .digit-keyboard-key-wrapper {
+        .digit-keyboard-key {
+          border-bottom: $dk-btn-border-size solid $dk-btn-border-color;
+        }
+      }
+    }
+  }
+
+  // Align center
+  &.align-center {
+    margin: 0 auto;
+  }
+
+  // Align left
+  &.align-left {
+    margin-right: auto;
+  }
+
+  // Align right
+  &.align-right {
+    margin-left: auto;
+  }
+
+  // No letters
+  &.no-letters {
+    .digit-keyboard-row {
+      .digit-keyboard-key-wrapper {
+        .digit-keyboard-key {
+          .digit-keyboard-key-number {
+            margin-top: -0.30em;
+
+            .digit-keyboard-key-letters {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Round buttons
+  &.round-buttons {
+    .digit-keyboard-row {
+      border: none;
+
+      .digit-keyboard-key-wrapper {
+        margin: 10px 0 0 0;
+
+        .digit-keyboard-key {
+          width: $dk-btn-height;
+          -webkit-border-radius: 100%;
+          -moz-border-radius: 100%;
+          border-radius: 100%;
+          border: $dk-btn-border-size solid $dk-btn-border-color;
+        }
+      }
+
+      &:last-child .digit-keyboard-key-wrapper {
+        margin-bottom: 10px;
+      }
+    }
+
+    &.no-letters {
+      .digit-keyboard-row {
+        .digit-keyboard-key-wrapper {
+          .digit-keyboard-key {
+            .digit-keyboard-key-number {
+              height: (($dk-btn-height*96)/100);
+              line-height: (($dk-btn-height*96)/100);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*
+   * Keyboard color styles
+   */
+  &.keyboard-light {
+    * { border-color: darken($light, 10%) !important; }
+    .digit-keyboard-key {
+      background: $light;
+      color: #444;
+
+      &.activated {
+        background: darken($light, 10%);
+      }
+    }
+  }
+
+  &.keyboard-stable {
+    * { border-color: darken($stable, 10%) !important; }
+    .digit-keyboard-key {
+      background: $stable;
+      color: #444;
+
+      &.activated {
+        background: darken($stable, 10%);
+      }
+    }
+  }
+
+  &.keyboard-positive {
+    * { border-color: darken($positive, 10%) !important; }
+    .digit-keyboard-key {
+      background: $positive;
+      color: #fff;
+
+      &.activated {
+        background: darken($positive, 10%);
+      }
+    }
+  }
+
+  &.keyboard-calm {
+    * { border-color: darken($calm, 10%) !important; }
+    .digit-keyboard-key {
+      background: $calm;
+      color: #fff;
+
+      &.activated {
+        background: darken($calm, 10%);
+      }
+    }
+  }
+
+  &.keyboard-balanced {
+    * { border-color: darken($balanced, 10%) !important; }
+    .digit-keyboard-key {
+      background: $balanced;
+      color: #fff;
+
+      &.activated {
+        background: darken($balanced, 10%);
+      }
+    }
+  }
+
+  &.keyboard-energized {
+    * { border-color: darken($energized, 5%) !important; }
+    .digit-keyboard-key {
+      background: $energized;
+      color: #fff;
+
+      &.activated {
+        background: darken($energized, 5%);
+      }
+    }
+  }
+
+  &.keyboard-assertive {
+    * { border-color: darken($assertive, 10%) !important; }
+    .digit-keyboard-key {
+      background: $assertive;
+      color: #fff;
+
+      &.activated {
+        background: darken($assertive, 10%);
+      }
+    }
+  }
+
+  &.keyboard-royal {
+    * { border-color: darken($royal, 8%) !important; }
+    .digit-keyboard-key {
+      background: $royal;
+      color: #fff;
+
+      &.activated {
+        background: darken($royal, 8%);
+      }
+    }
+  }
+
+  &.keyboard-dark {
+    * { border-color: darken($dark, 10%) !important; }
+    .digit-keyboard-key {
+      background: $dark;
+      color: #fff;
+
+      &.activated {
+        background: darken($dark, 10%);
+      }
+    }
+  }
+
+  &.keyboard-opaque-black {
+    * { border-color: $opaque-black !important; }
+    .digit-keyboard-key {
+      background: rgba(#000, 0.15);
+      color: $opaque-black;
+
+      &.activated {
+        background: rgba(#000, 0.25);
+      }
+    }
+  }
+
+  &.keyboard-opaque-white {
+    * { border-color: $opaque-white !important; }
+    .digit-keyboard-key {
+      background: rgba(#fff, 0.15);
+      color: $opaque-white;
+
+      &.activated {
+        background: rgba(#fff, 0.25);
+      }
+    }
+  }
+
+  // Animation: slide-up
+  &.animation-slide-up {
+    -webkit-transition: transform linear 150ms;
+    transition: transform linear 150ms;
+    transform: translate3d(0,0,0);
+  }
+
+  &.animation-slide-up.ng-hide {
+    transform: translate3d(0,100%,0);
+  }
+
+  // Animation: pop
+  &.animation-pop {
+    -webkit-transition: transform linear 150ms;
+    transition: transform linear 150ms;
+    transform: scale3d(1, 1, 1);
+  }
+
+  &.animation-pop.ng-hide {
+    transform: scale3d(0, 0, 1);
+  }
+}
+
 

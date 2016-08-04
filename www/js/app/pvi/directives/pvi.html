@@ -1,0 +1,7 @@
+<div class="pvi" ng-repeat="pvi in pvi | filter:checkId" ng-cloak>
+
+    <div class="pvi-prepare" ng-show="pvi.state_code == constants.IN_PREPARATION" ng-cloak></div>
+    <div class="pvi-signature" ng-show="pvi.state_code == constants.TO_SIGN" ng-cloak></div>
+    <div class="pvi-close" ng-show="pvi.state_code == constants.TO_CLOSE" ng-cloak></div>
+
+</div>

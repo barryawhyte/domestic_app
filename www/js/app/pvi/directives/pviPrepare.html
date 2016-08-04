@@ -1,0 +1,43 @@
+<div class="form-header">
+    <div class="row identification-main">
+        <div class="col col-70">{{pvi.mission_start_date}}</div>
+        <div class="col text-right">{{pvi.mission_start_time}}</div>
+    </div>
+    <div class="row">
+        <div class="col col-70 identification-sub">{{pvi.final_customer_name}}</div>
+        <div class="col text-right identification-description">{{pvi.file_number}}</div>
+    </div>
+    <div class="row" ng-show="pvi.blank">
+        <div class="col text-right">
+            <div class="button button-calm" hm-tap="removePvi($event)">
+            <i class="ion-android-delete"></i>
+            {{text.AT_SUPPRIMER_PVI}}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<form name="pviForm" novalidate>
+
+    <div class="pvi-prepare-avant"></div>
+
+    <div class="pvi-prepare-tete"></div>
+
+    <div class="pvi-prepare-main"></div>
+
+    <div class="pvi-prepare-anomalies"></div>
+
+    <div class="pvi-prepare-materiel"></div>
+
+    <div class="pvi-prepare-detail"></div>
+
+</form>
+
+<div class="action-footer">
+    <div class="button button-balanced" hm-tap="validatePreparePvi($event)">
+    <i class="ion-checkmark"></i>
+    {{text.AT_PRET_A_SIGNER}}
+    </div>
+</div>

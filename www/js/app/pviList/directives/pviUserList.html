@@ -1,0 +1,19 @@
+<div class="action-header">
+    <div class="button button-balanced" hm-tap="createBlankPVI($event)">
+        <i class="ion-checkmark"></i>
+        {{text.AT_CREER_PVI}}
+    </div>
+</div>
+
+<div class="data-loader" ng-show="showDataLoader">
+    <ion-spinner class="android"></ion-spinner>
+    <p>{{text.AT_TELECHARGEMENT_VOS_PVIS}}</p>
+</div>
+
+<div class="list pvi-list pvi-user-list">
+    <div class="pvi-item pvi-user-list-item" ng-repeat="pvi in pvi | orderBy: ['pvi.mission_start_date', 'pvi.mission_start_time']: true" hm-tap="pviUserTap($event)">
+    </div>
+</div>
+
+<div class="action-footer">
+</div>

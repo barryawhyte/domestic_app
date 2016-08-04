@@ -1,0 +1,28 @@
+<div class=" pvi-item-list ">
+
+    <div class="card-content">
+        <div class="card-title row row-without-paddings">
+            <div class="col col-75">{{pvi.mission_start_date}}</div>
+            <div class="col text-right">{{pvi.mission_start_time}}</div>
+        </div>
+        <div class="card-subtitle">
+            {{pvi.final_customer_name}}
+        </div>
+        <div class="card-description">
+
+            <div class="mission-code">
+                {{pvi.file_number}}
+            </div>
+            <div ng-show="!pvi.is_head_mission" class="warning">
+                <span class="icon ion-android-warning"></span><span>{{text.AT_PAS_CHEF_MISSION}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="column-main-action">
+        <i class="light icon-lg " ng-class="{
+        'ion-play': pvi.state_code == constants.IN_PREPARATION,
+        'icon-signature': pvi.state_code == constants.TO_SIGN,
+        'ion-locked': pvi.state_code == constants.TO_CLOSE
+        }"></i>
+    </div>
+</div>

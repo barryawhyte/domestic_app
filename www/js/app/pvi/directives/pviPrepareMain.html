@@ -1,0 +1,218 @@
+<div class="form-part" ng-class="{'form-part-invalid': validationMain.main_block.error, 'form-part-completed': validationMain.main_block.complete}">
+    <div class="block-title" id="main_block" hm-tap="toggleBlock('main_block')">
+        <div class="title">{{text.AT_MAIN_TITRE}}</div>
+        <i ng-class="isBlockDisplayed('main_block') ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+    </div>
+    <div class="inputs" ng-show="isBlockDisplayed('main_block')">
+        <div class="item item-input item-stacked-label" ng-class="{'error': validationMain.day_selection.error}">
+            <div class="input-label">{{text.AT_TYPE_JOURNEE}} *</div>
+            <ion-checkbox id="workday" hm-tap="toggleMinorBlock('work_day')" ng-model="pvi.work_day">{{text.AT_JOUR_OUVRE}}</ion-checkbox>
+            <div ng-show="pvi.work_day">
+                <div class="sub-choice-title">
+                    {{text.AT_TEMPS_PASSE}}
+                </div>
+                <div class="sub-choice">
+                    <label id="work_day_work_duration_day_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.work_day_work_duration_day.error}">
+                        <div class="input-label">{{text.AT_8H_18H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('work_day_work_duration_day')" ></i>
+                            <input id="work_day_work_duration_day" type="text"
+                                   value="{{pvi.work_day_work_duration_day}}"
+                                   ng-model="pvi.work_day_work_duration_day"
+                                   hm-tap="showKeypad('work_day_work_duration_day')" readonly>
+                        </div>
+                    </label>
+                    <label id="work_day_work_duration_evening_morning_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.work_day_work_duration_evening_morning.error}">
+                        <div class="input-label">{{text.AT_8_22H_6_8H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('work_day_work_duration_evening_morning')" ></i>
+                            <input id="work_day_work_duration_evening_morning" type="text"
+                                   value="{{pvi.work_day_work_duration_evening_morning}}"
+                                   ng-model="pvi.work_day_work_duration_evening_morning"
+                                   hm-tap="showKeypad('work_day_work_duration_evening_morning')" readonly>
+                        </div>
+                    </label>
+                    <label id="work_day_work_duration_night_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.work_day_work_duration_night.error}">
+                        <div class="input-label">{{text.AT_22H_6H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('work_day_work_duration_night')" ></i>
+                            <input id="work_day_work_duration_night" type="text"
+                                   value="{{pvi.work_day_work_duration_night}}"
+                                   ng-model="pvi.work_day_work_duration_night"
+                                   hm-tap="showKeypad('work_day_work_duration_night')" readonly>
+                        </div>
+                    </label>
+                    <label id="work_day_trip_duration_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.work_day_trip_duration.error}">
+                        <div class="input-label">{{text.AT_HEURES_VOYAGE}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('work_day_trip_duration')" ></i>
+                            <input id="work_day_trip_duration" type="text"
+                                   value="{{pvi.work_day_trip_duration}}"
+                                   ng-model="pvi.work_day_trip_duration"
+                                   hm-tap="showKeypad('work_day_trip_duration')" readonly>
+                        </div>
+                    </label>
+                </div>
+                <div class="sub-choice-title">
+                    Déplacement
+                </div>
+                <div class="sub-choice">
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.work_day_mileage.error}">
+                        <div class="input-label">Kilométrage</div>
+                        <input type="text" value="{{pvi.work_day_mileage}}" ng-model="pvi.work_day_mileage">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.work_day_tolls.error}">
+                        <div class="input-label">Péages</div>
+                        <input type="text" value="{{pvi.work_day_tolls}}" ng-model="pvi.work_day_tolls">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.work_day_expenses.error}">
+                        <div class="input-label">Frais de vie</div>
+                        <input type="text" value="{{pvi.work_day_expenses}}" ng-model="pvi.work_day_expenses">
+                    </label>
+                </div>
+            </div>
+            <ion-checkbox id="saturday" ng-model="pvi.saturday" hm-tap="toggleMinorBlock('saturday')">{{text.AT_SAMEDI}}</ion-checkbox>
+            <div ng-show="pvi.saturday">
+                <div class="sub-choice-title">
+                    {{text.AT_TEMPS_PASSE}}
+                </div>
+                <div class="sub-choice">
+                    <label id="saturday_work_duration_day_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.saturday_work_duration_day.error}">
+                        <div class="input-label">{{text.AT_8H_18H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('saturday_work_duration_day')"></i>
+                            <input id="saturday_work_duration_day" type="text"
+                                   value="{{pvi.saturday_work_duration_day}}"
+                                   ng-model="pvi.saturday_work_duration_day"
+                                   hm-tap="showKeypad('saturday_work_duration_day')" readonly>
+                        </div>
+                    </label>
+                    <label id="saturday_work_duration_evening_morning_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.saturday_work_duration_evening_morning.error}">
+                        <div class="input-label">{{text.AT_8_22H_6_8H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('saturday_work_duration_evening_morning')"></i>
+                            <input id="saturday_work_duration_evening_morning" type="text"
+                                   value="{{pvi.saturday_work_duration_evening_morning}}"
+                                   ng-model="pvi.saturday_work_duration_evening_morning"
+                                   hm-tap="showKeypad('saturday_work_duration_evening_morning')" readonly>
+                        </div>
+                    </label>
+                    <label id="saturday_work_duration_night_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.saturday_work_duration_night.error}">
+                        <div class="input-label">{{text.AT_22H_6H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('saturday_work_duration_night')"></i>
+                            <input id="saturday_work_duration_night" type="text"
+                                   value="{{pvi.saturday_work_duration_night}}"
+                                   ng-model="pvi.saturday_work_duration_night"
+                                   hm-tap="showKeypad('saturday_work_duration_night')" readonly>
+                        </div>
+                    </label>
+                    <label id="saturday_trip_duration_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.saturday_trip_duration.error}">
+                        <div class="input-label">{{text.AT_HEURES_VOYAGE}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('saturday_trip_duration')"></i>
+                            <input id="saturday_trip_duration" type="text"
+                                   value="{{pvi.saturday_trip_duration}}"
+                                   ng-model="pvi.saturday_trip_duration"
+                                   hm-tap="showKeypad('saturday_trip_duration')" readonly>
+                        </div>
+                    </label>
+                </div>
+                <div class="sub-choice-title">
+                    {{text.AT_DEPLACEMENT}}
+                </div>
+                <div class="sub-choice">
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.saturday_mileage.error}">
+                        <div class="input-label">{{text.AT_KILOMETRAGE}}</div>
+                        <input type="text" value="{{pvi.saturday_mileage}}" ng-model="pvi.saturday_mileage">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.saturday_tolls.error}">
+                        <div class="input-label">{{text.AT_PEAGES}}</div>
+                        <input type="text" value="{{pvi.saturday_tolls}}" ng-model="pvi.saturday_tolls">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.saturday_expenses.error}">
+                        <div class="input-label">{{text.AT_FRAIS}}</div>
+                        <input type="text" value="{{pvi.saturday_expenses}}" ng-model="pvi.saturday_expenses">
+                    </label>
+                </div>
+            </div>
+            <ion-checkbox id="sunday_offday" ng-model="pvi.sunday_offday" hm-tap="toggleMinorBlock('sunday_offday')">{{text.AT_DIMANCHE}}</ion-checkbox>
+            <div ng-show="pvi.sunday_offday">
+                <div class="sub-choice-title">
+                    {{text.AT_TEMPS_PASSE}}
+                </div>
+                <div class="sub-choice">
+                    <label id="sunday_offday_work_duration_day_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.sunday_offday_work_duration_day.error}">
+                        <div class="input-label">{{text.AT_8_22H_6_8H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('sunday_offday_work_duration_day')"></i>
+                            <input id="sunday_offday_work_duration_day" type="text"
+                                   value="{{pvi.sunday_offday_work_duration_day}}"
+                                   ng-model="pvi.sunday_offday_work_duration_day"
+                                   hm-tap="showKeypad('sunday_offday_work_duration_day')" readonly>
+                        </div>
+                    </label>
+                    <label id="sunday_offday_work_duration_evening_morning_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.sunday_offday_work_duration_evening_morning.error}">
+                        <div class="input-label">{{text.AT_8_22H_6_8H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('sunday_offday_work_duration_evening_morning')"></i>
+                            <input id="sunday_offday_work_duration_evening_morning" type="text"
+                                   value="{{pvi.sunday_offday_work_duration_evening_morning}}"
+                                   ng-model="pvi.sunday_offday_work_duration_evening_morning"
+                                   hm-tap="showKeypad('sunday_offday_work_duration_evening_morning')" readonly>
+                        </div>
+                    </label>
+                    <label id="sunday_offday_work_duration_night_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.sunday_offday_work_duration_night.error}">
+                        <div class="input-label">{{text.AT_22H_6H}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('sunday_offday_work_duration_night')"></i>
+                            <input id="sunday_offday_work_duration_night" type="text"
+                                   value="{{pvi.sunday_offday_work_duration_night}}"
+                                   ng-model="pvi.sunday_offday_work_duration_night"
+                                   hm-tap="showKeypad('sunday_offday_work_duration_night')" readonly>
+                        </div>
+                    </label>
+                    <label id="sunday_offday_trip_duration_label" class="item item-input item-stacked-label"
+                           ng-class="{'error': validationMain.sunday_offday_trip_duration.error}">
+                        <div class="input-label">{{text.AT_HEURES_VOYAGE}}</div>
+                        <div class="input-stacked">
+                            <i class="input-action-addon icon-chrono" hm-tap="showKeypad('sunday_offday_trip_duration')"></i>
+                            <input id="sunday_offday_trip_duration" type="text"
+                                   value="{{pvi.sunday_offday_trip_duration}}"
+                                   ng-model="pvi.sunday_offday_trip_duration"
+                                   hm-tap="showKeypad('sunday_offday_trip_duration')" readonly>
+                        </div>
+                    </label>
+                </div>
+                <div class="sub-choice-title">
+                    {{text.AT_DEPLACEMENT}}
+                </div>
+                <div class="sub-choice">
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.sunday_offday_mileage.error}">
+                        <div class="input-label">{{text.AT_KILOMETRAGE}}</div>
+                        <input type="text" value="{{pvi.sunday_offday_mileage}}" ng-model="pvi.sunday_offday_mileage">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.sunday_offday_tolls.error}">
+                        <div class="input-label">{{text.AT_PEAGES}}</div>
+                        <input type="text" value="{{pvi.sunday_offday_tolls}}" ng-model="pvi.sunday_offday_tolls">
+                    </label>
+                    <label class="item item-input item-stacked-label" ng-class="{'error': validationMain.sunday_offday_expenses.error}">
+                        <div class="input-label">{{text.AT_FRAIS}}</div>
+                        <input type="text" value="{{pvi.sunday_offday_expenses}}" ng-model="pvi.sunday_offday_expenses">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

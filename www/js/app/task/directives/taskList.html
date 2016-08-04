@@ -1,0 +1,19 @@
+<div class="data-loader" ng-show="showDataLoader">
+    <ion-spinner class="android"></ion-spinner>
+    <p>{{text.AT_DOWNLOADING_TASKS}}</p>
+</div>
+
+<div class="list pvi-list pvi-user-list">
+    <div class="pvi-item pvi-user-list-item" ng-repeat="task in task | orderBy: ['task.date_scheduled']: true" hm-tap="taskTap($event)">
+    </div>
+</div>
+
+<div class="action-header">
+    <div class="button button-balanced" hm-tap="addTask($event)">
+        <i class="ion-checkmark"></i>
+        {{text.AT_ADD_TASK}}
+    </div>
+</div>
+
+<div class="action-footer">
+</div>

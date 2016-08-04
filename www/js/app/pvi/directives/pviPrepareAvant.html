@@ -1,0 +1,51 @@
+<div class="form-part" ng-class="{'form-part-invalid': validationAvant.avant_block.error, 'form-part-completed': validationAvant.avant_block.complete}">
+    <div class="block-title" id="avant_block" hm-tap="toggleBlock('avant_block')">
+        <div class="title">{{text.AT_AVANT_TITRE}}</div>
+        <i ng-class="isBlockDisplayed('avant_block') ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+    </div>
+    <div class="inputs" ng-show="isBlockDisplayed('avant_block')">
+        <div class="item item-input item-stacked-label">
+
+            <div class="input-label">{{text.AT_ARRIVEE_SUR_SITE}} *</div>
+            <div class="input-stacked" ng-class="{'error': validationAvant.arrival_date.error}">
+                <i class="input-action-addon ion-android-calendar" hm-tap="openDatePicker('arrival_date')"></i>
+                <input type="text" value="{{pvi.arrival_date}}" ng-model="pvi.arrival_date" hm-tap="openDatePicker('arrival_date')" readonly>
+                <i class="input-action-addon ion-minus" hm-tap="editDay('arrival_date', 'deduct')"></i>
+                <i class="input-action-addon ion-plus" hm-tap="editDay('arrival_date', 'add')"></i>
+            </div>
+
+            <div class="input-stacked input-group clockpicker_arrival_time" data-placement="top" data-align="middle" data-autoclose="true">
+                <i class="input-group-addon input-action-addon ion-android-time"></i>
+                <input id="arrival_time" type="text" value="{{pvi.arrival_time}}" data-default="{{pvi.arrival_time}}" ng-model="pvi.arrival_time">
+                <i class="input-action-addon ion-minus" hm-tap="editTime('arrival_time', 'deduct')"></i>
+                <i class="input-action-addon ion-plus" hm-tap="editTime('arrival_time', 'add')"></i>
+            </div>
+
+        </div>
+
+        <div class="item item-input item-stacked-label" ng-class="{'error': validationAvant.with_consignment.error}">
+            <div class="input-label">{{text.AT_AVEC_CONSIGNATION}} *</div>
+            <div class="row ">
+                <div class="col radio-50">
+                    <ion-radio name="with_consignment" ng-model="pvi.with_consignment" ng-value="true">{{text.AT_OUI}}</ion-radio>
+                </div>
+                <div class="col radio-50">
+                    <ion-radio name="with_consignment" ng-model="pvi.with_consignment" ng-value="false">{{text.AT_NON}}</ion-radio>
+                </div>
+            </div>
+        </div>
+
+        <label id="consignment_duration_label" class="item item-input item-stacked-label"
+               ng-show="pvi.with_consignment" ng-class="{'error': validationAvant.consignment_duration.error}">
+            <div class="input-label">{{text.AT_TEMPS_CONSIGNATION}} *</div>
+            <div class="input-stacked">
+                <i class="input-action-addon icon-chrono" hm-tap="showKeypad('consignment_duration')"></i>
+                <input id="consignment_duration" type="text"
+                       value="{{pvi.consignment_duration}}"
+                       ng-model="pvi.consignment_duration"
+                       hm-tap="showKeypad('consignment_duration')" readonly>
+            </div>
+        </label>
+
+    </div>
+</div>

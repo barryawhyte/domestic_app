@@ -1,0 +1,39 @@
+<div class="form-part" ng-class="{'form-part-invalid': validationDetail.detail_block.error, 'form-part-completed': validationDetail.detail_block.complete}">
+    <div class="block-title" id="detail_block" hm-tap="toggleBlock('detail_block')">
+        <div class="title">{{text.AT_DETAIL_TITRE}}</div>
+        <i ng-class="isBlockDisplayed('detail_block') ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+    </div>
+    <div class="inputs" ng-show="isBlockDisplayed('detail_block')">
+
+        <div class="item item-input item-stacked-label" ng-class="{'error': validationDetail.interventions_realised.error}">
+            <div class="input-label">{{text.AT_INTERVENTION_REALISEE}} *</div>
+            <ion-checkbox ng-model="pvi.is_intervention_realised_maintenance">{{text.AT_MAINTENANCE}}</ion-checkbox>
+            <ion-checkbox ng-model="pvi.is_intervention_realised_installation">{{text.AT_SERVICE}}</ion-checkbox>
+            <ion-checkbox ng-model="pvi.is_intervention_realised_replacement">{{text.AT_REMPLACEMENT}}</ion-checkbox>
+            <ion-checkbox ng-model="pvi.is_intervention_realised_assistance">{{text.AT_DEPANNAGE}}</ion-checkbox>
+        </div>
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationDetail.intervention_detail.error}">
+            <div class="input-label">{{text.AT_DETAIL_INTERVENTION}} *</div>
+            <textarea ng-model="pvi.intervention_detail">{{pvi.intervention_detail}}</textarea>
+        </label>
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationDetail.device_measure.error}">
+            <div class="input-label">{{text.AT_APPAREILS_MESURE}}</div>
+            <input ng-model="pvi.device_measure" type="text" value="{{pvi.device_measure}}">
+        </label>
+
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationDetail.observation_ti.error}">
+            <div class="input-label">{{text.AT_OBSERVATIONS_TI}}</div>
+            <textarea ng-model="pvi.observation_ti">{{pvi.observation_ti}}</textarea>
+        </label>
+
+        <label class="item item-input item-stacked-label" ng-class="{'error': validationDetail.deadline.error}">
+            <div class="input-label">{{text.AT_ECHEANCE_TRAVAUX}}</div>
+            <input ng-model="pvi.deadline" type="text" value="{{pvi.deadline}}">
+        </label>
+
+
+    </div>
+</div>
