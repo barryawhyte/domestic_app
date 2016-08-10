@@ -13,14 +13,9 @@ domapp.factory("userLocalService", ['CONSTANTS', 'userModel',
                 return userModel.user;
             },
 
-            activateUser: function() {
+            setUser: function(user) {
 
-                userModel.user.activationState = CONSTANTS.ACTIVATED;
-            },
-
-            setUserAPIKey: function(APIKey) {
-
-                userModel.user.APIKey = APIKey;
+                userModel.user = user;
             }
         }
     }]);

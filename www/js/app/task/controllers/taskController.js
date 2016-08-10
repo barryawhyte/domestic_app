@@ -3,17 +3,12 @@
  * Controller for Task
  *
  */
-domapp.controller('taskController', ['CONSTANTS', 'TEXT', '$scope', '$stateParams', 'taskModel',
-    function (CONSTANTS, TEXT, $scope, $stateParams, taskModel) {
+domapp.controller('taskController', ['CONSTANTS', 'TEXT', '$scope', '$state', 'taskLocalService',
+    function (CONSTANTS, TEXT, $scope, $state, taskLocalService) {
 
         $scope.text = TEXT;
         $scope.constants = CONSTANTS;
 
-        $scope.currentTaskId = parseInt($stateParams.taskId.substring(1));
-        $scope.task = taskModel.task;
+        $scope.task = taskLocalService.getTaskById(parseInt($state.params.id));
 
-        $scope.checkId = function(task) {
-
-            return (task.id == $scope.currentTaskId);
-        };
     }]);

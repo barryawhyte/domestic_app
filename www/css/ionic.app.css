@@ -9884,58 +9884,58 @@ body > header #view-header {
     font-family: "title" , Arial, sans-serif;
     font-size: 22px; }
 
-.pvi-list .column-main-action {
+.task-list .column-main-action {
   width: 50px;
   background-color: #42B4E6;
   color: #fff; }
-  .pvi-list .column-main-action .parent-vertical-align-center {
+  .task-list .column-main-action .parent-vertical-align-center {
     position: relative;
     height: 100%; }
-    .pvi-list .column-main-action .parent-vertical-align-center i {
+    .task-list .column-main-action .parent-vertical-align-center i {
       position: absolute;
       top: 25%;
       left: 25%; }
 
-.pvi-list .card-content {
+.task-list .card-content {
   padding: 5px 5px 5px 10px; }
 
-.pvi-list .pvi-item {
+.task-list .pvi-item {
   background-color: #fff;
   padding: 5px;
   display: table;
   table-layout: fixed;
   width: 100%; }
-  .pvi-list .pvi-item:active .column-main-action {
+  .task-list .pvi-item:active .column-main-action {
     background-color: #000; }
 
-.pvi-list .pvi-item-list {
+.task-list .pvi-item-list {
   background-color: #f8f8f8;
   display: table-row; }
-  .pvi-list .pvi-item-list > div {
+  .task-list .pvi-item-list > div {
     display: table-cell; }
-    .pvi-list .pvi-item-list > div.column-main-action {
+    .task-list .pvi-item-list > div.column-main-action {
       vertical-align: middle;
       text-align: center;
       width: 45px; }
 
-.pvi-list .card-title {
+.task-list .card-title {
   font-weight: bold;
   color: #626469; }
 
-.pvi-list .card-subtitle {
+.task-list .card-subtitle {
   color: #626469;
   text-transform: uppercase; }
 
-.pvi-list .card-description {
+.task-list .card-description {
   color: #9FA0A4;
   font-size: 15px; }
 
-.pvi-list .mission-code {
+.task-list .mission-code {
   text-transform: uppercase; }
 
-.pvi-list .warning {
+.task-list .warning {
   color: #E47F00; }
-  .pvi-list .warning .icon {
+  .task-list .warning .icon {
     padding-right: 5px; }
 
 .data-loader {

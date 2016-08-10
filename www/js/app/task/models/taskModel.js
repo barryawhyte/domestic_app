@@ -7,5 +7,4 @@
 domapp.service("taskModel", [function() {
 
     this.task = [];
-
 }]);

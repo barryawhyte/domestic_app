@@ -60,49 +60,74 @@
 
   <!-- common -->
   <script type="text/javascript" src="js/app/common/services/alertService.js"></script>
-  <script type="text/javascript" src="js/app/common/services/communicationService.js"></script>
-  <script type="text/javascript" src="js/app/common/services/connectionService.js"></script>
+  <script type="text/javascript" src="js/app/common/services/dataService.js"></script>
+  <script type="text/javascript" src="js/app/common/services/authService.js"></script>
   <script type="text/javascript" src="js/app/common/services/httpInterceptorService.js"></script>
   <script type="text/javascript" src="js/app/common/services/helperService.js"></script>
-  <script type="text/javascript" src="js/app/common/services/persistenceService.js"></script>
   <script type="text/javascript" src="js/app/common/directives/tabsDirective.js"></script>
   <script type="text/javascript" src="js/app/common/directives/headerDirective.js"></script>
 
   <!-- login -->
   <script type="text/javascript" src="js/app/login/controllers/loginController.js"></script>
   <script type="text/javascript" src="js/app/login/directives/loginDirective.js"></script>
-  <script type="text/javascript" src="js/app/login/services/loginCommunicationService.js"></script>
 
   <!-- task -->
   <script type="text/javascript" src="js/app/task/controllers/taskController.js"></script>
+  <script type="text/javascript" src="js/app/task/controllers/taskListController.js"></script>
   <script type="text/javascript" src="js/app/task/models/taskModel.js"></script>
   <script type="text/javascript" src="js/app/task/services/taskLocalService.js"></script>
   <script type="text/javascript" src="js/app/task/services/taskCommunicationService.js"></script>
+  <script type="text/javascript" src="js/app/task/directives/taskDirective.js"></script>
   <script type="text/javascript" src="js/app/task/directives/taskListDirective.js"></script>
   <script type="text/javascript" src="js/app/task/directives/taskListItemDirective.js"></script>
+
+  <!-- employee -->
+  <script type="text/javascript" src="js/app/employee/controllers/employeeController.js"></script>
+  <script type="text/javascript" src="js/app/employee/controllers/employeeListController.js"></script>
+  <script type="text/javascript" src="js/app/employee/models/employeeModel.js"></script>
+  <script type="text/javascript" src="js/app/employee/services/employeeLocalService.js"></script>
+  <script type="text/javascript" src="js/app/employee/directives/employeeDirective.js"></script>
+  <script type="text/javascript" src="js/app/employee/directives/employeeListDirective.js"></script>
+  <script type="text/javascript" src="js/app/employee/directives/employeeListItemDirective.js"></script>
+
+  <!-- room -->
+  <script type="text/javascript" src="js/app/room/controllers/roomController.js"></script>
+  <script type="text/javascript" src="js/app/room/controllers/roomListController.js"></script>
+  <script type="text/javascript" src="js/app/room/models/roomModel.js"></script>
+  <script type="text/javascript" src="js/app/room/services/roomLocalService.js"></script>
+  <script type="text/javascript" src="js/app/room/directives/roomDirective.js"></script>
+  <script type="text/javascript" src="js/app/room/directives/roomListDirective.js"></script>
+  <script type="text/javascript" src="js/app/room/directives/roomListItemDirective.js"></script>
 
   <!-- user -->
   <script type="text/javascript" src="js/app/user/models/userModel.js"></script>
   <script type="text/javascript" src="js/app/user/services/userLocalService.js"></script>
 
   <header class="header">
-    <div id="page-header" class="bar bar-header">
+    <div id="page-header" class="bar bar-header bar-balanced">
       <!--<img src="img/Schneider_Electric.svg.png"/>-->
       <h1 class="title">Domestic TODO App</h1>
-        <button value="sign out" hm-tap="signOut($event)">Sign out</button>
+        <button class="button ion-log-out" hm-tap="signOut($event)"></button>
+        <button class="button icon ion-gear-a"></button>
     </div>
 
-    <div class="tabs" ng-show="showTabs()">
-      <a class="tab-item" ng-class="{active: employeeNavTabIsActive()}" hm-tap="loadEmployeeList($event)">
+      <div class="tabs-striped tabs-top tabs-background-balanced tabs-color-light">
+    <div class="tabs tabs-icon-top" ng-show="showTabs()">
+      <a class="tab-item " ng-class="{active: employeeNavTabIsActive()}" hm-tap="loadEmployeeList($event)">
+          <i class = "icon ion-person-stalker"></i>
           Employees
       </a>
       <a class="tab-item" ng-class="{active: taskNavTabIsActive()}" hm-tap="loadTaskList($event)">
+          <i class = "icon ion-clipboard"></i>
           Tasks
       </a>
       <a class="tab-item" ng-class="{active: roomNavTabIsActive()}" hm-tap="loadRoomList($event)">
+          <i class = "icon ion-home"></i>
           Rooms
       </a>
     </div>
+          </div>
+
   </header>
 
   <ion-view>
@@ -110,12 +135,12 @@
       <ion-scroll direction="y">
 
           <div ui-view="login"></div>
-          <!--<div ui-view="employeeList"></div>-->
-          <!--<div ui-view="taskList"></div>-->
-          <!--<div ui-view="roomList"></div>-->
-          <!--<div ui-view="employee"></div>-->
-          <!--<div ui-view="task"></div>-->
-          <!--<div ui-view="room"></div>-->
+          <div ui-view="employeeList"></div>
+          <div ui-view="taskList"></div>
+          <div ui-view="roomList"></div>
+          <div ui-view="employee"></div>
+          <div ui-view="task"></div>
+          <div ui-view="room"></div>
 
       </ion-scroll>
     </ion-content>

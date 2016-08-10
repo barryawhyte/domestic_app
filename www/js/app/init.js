@@ -3,8 +3,8 @@
  * Application Initialisation Logic
  *
  */
-domapp.run(['$rootScope', '$location', 'CONSTANTS', '$ionicPlatform',
-    function($rootScope, $location, CONSTANTS, $ionicPlatform) {
+domapp.run(['$rootScope', '$location', 'CONSTANTS', '$ionicPlatform', 'authService', 'dataService',
+    function($rootScope, $location, CONSTANTS, $ionicPlatform, authService, dataService) {
 
         $ionicPlatform.ready(function() {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -28,4 +28,10 @@ domapp.run(['$rootScope', '$location', 'CONSTANTS', '$ionicPlatform',
         };
 
         firebase.initializeApp(firebaseConfig);
+
+        //Activate Auth Handler
+        authService.activateAuthStateHandler();
+
+        //Activate Data Value Change Handlers
+        dataService.activateDataValueRead('/tasks');
     }]);

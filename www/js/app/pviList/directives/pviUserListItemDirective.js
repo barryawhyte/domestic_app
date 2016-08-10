@@ -8,7 +8,7 @@ domapp.directive('pviUserListItem', ['CONSTANTS', 'routingService',
     function(CONSTANTS, routingService) {
 
         return {
-            templateUrl: CONSTANTS.BASE_PATH + "pviList/directives/taskListItem.html",
+            templateUrl: CONSTANTS.BASE_PATH + "pviList/directives/employeeListItem.html",
             restrict: 'C',
             replace: false,
             priority: 0,

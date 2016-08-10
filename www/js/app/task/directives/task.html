@@ -1,14 +1,13 @@
-<div class="pvi" ng-repeat="task in task | filter:checkId" ng-cloak>
+<div class="task">
 
     <div class="form-header">
-        <!--<div class="row identification-main">-->
-            <!--<div class="col col-70">{{pvi.mission_start_date}}</div>-->
-            <!--<div class="col text-right">{{pvi.mission_start_time}}</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-            <!--<div class="col col-70 identification-sub">{{pvi.final_customer_name}}</div>-->
-            <!--<div class="col text-right identification-description">{{pvi.file_number}}</div>-->
-        <!--</div>-->
+        <div class="row identification-main">
+            <div class="col col-70">date scheduled: {{task.date_scheduled}}</div>
+        </div>
+        <div class="row">
+            <div class="col col-70 identification-sub">title: {{task.title}}</div>
+            <div class="col text-right identification-description">description{{task.description}}</div>
+        </div>
         <!--<div class="row" ng-show="pvi.blank">-->
             <!--<div class="col text-right">-->
                 <!--<div class="button button-calm" hm-tap="removePvi($event)">-->

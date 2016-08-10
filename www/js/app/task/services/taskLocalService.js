@@ -13,18 +13,15 @@ domapp.factory("taskLocalService", ['CONSTANTS', 'taskModel', 'helperService',
                 taskModel.task.push(task);
             },
 
-            removeOtherPviById: function(pviId) {
+            removeTaskById: function(taskId) {
 
-                for(var i = pviOtherModel.pvi.length-1; i >= 0; i--) {
+                for(var i = taskModel.task.length-1; i >= 0; i--) {
 
-                    if( pviOtherModel.pvi[i].id == pviId) {
+                    if( taskModel.task[i].id == taskId) {
 
-                        pviOtherModel.pvi.splice(i,1);
+                        taskModel.task.splice(i,1);
                     }
                 }
-
-                //update task model in local storage
-                persistenceService.setLocalStorage(CONSTANTS.LS_KEY_PVI_OTHER);
             },
 
             checkTaskExistsById: function(taskId) {

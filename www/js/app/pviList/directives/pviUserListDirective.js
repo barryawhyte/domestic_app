@@ -4,8 +4,8 @@
  *
  * Behaviour Handlers: tap
  */
-domapp.directive('pviUserList', ['CONSTANTS', 'routingService', 'pviLocalService',
-    function(CONSTANTS, routingService, pviLocalService) {
+domapp.directive('pviUserList', ['CONSTANTS', 'pviLocalService',
+    function(CONSTANTS, pviLocalService) {
 
         return {
             restrict: 'C',

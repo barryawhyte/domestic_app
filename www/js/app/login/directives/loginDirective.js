@@ -4,8 +4,8 @@
  *
  * Behaviour Handlers: tap
  */
-domapp.directive('login', ['CONSTANTS', 'loginCommunicationService',
-    function(CONSTANTS, loginCommunicationService) {
+domapp.directive('login', ['CONSTANTS', 'authService',
+    function(CONSTANTS, authService) {
 
         return {
             restrict: 'C',
@@ -17,7 +17,7 @@ domapp.directive('login', ['CONSTANTS', 'loginCommunicationService',
                 //Tap login button
                 scope.loginButtonTap = function(event) {
 
-                    loginCommunicationService.loginUser(scope.user);
+                    authService.loginUser(scope.user);
                 };
             }
         };

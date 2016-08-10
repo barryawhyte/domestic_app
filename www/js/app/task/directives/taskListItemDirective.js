@@ -1,14 +1,14 @@
 /**
  *
- * Directive for PVI's in the User's List
+ * Directive for items in the task list
  *
  * Behaviour Handlers: tap
  */
-domapp.directive('pviUserListItem', ['CONSTANTS', 'routingService',
-    function(CONSTANTS, routingService) {
+domapp.directive('taskListItem', ['$state', 'CONSTANTS',
+    function($state, CONSTANTS) {
 
         return {
-            templateUrl: CONSTANTS.BASE_PATH + "pviList/directives/taskListItem.html",
+            templateUrl: CONSTANTS.BASE_PATH + "task/directives/taskListItem.html",
             restrict: 'C',
             replace: false,
             priority: 0,
@@ -16,9 +16,9 @@ domapp.directive('pviUserListItem', ['CONSTANTS', 'routingService',
             link: function postLink(scope, element, iAttrs, ctrl) {
 
                 //Tap task div
-                scope.pviUserTap = function(event) {
+                scope.taskTap = function(event) {
 
-                    routingService.navigate(CONSTANTS.INT_RT_PVI + scope.pvi.id);
+                    $state.go(CONSTANTS.INT_RT_TASK, {id: scope.task.id});
                 };
             }
         };

@@ -4,8 +4,8 @@
  *
  * Behaviour Handlers: tap
  */
-domapp.directive('tabs', ['CONSTANTS', '$location',
-    function(CONSTANTS, $location) {
+domapp.directive('tabs', ['CONSTANTS', '$state',
+    function(CONSTANTS, $state) {
 
         return {
             restrict: 'C',
@@ -18,26 +18,41 @@ domapp.directive('tabs', ['CONSTANTS', '$location',
                 scope.showTabs = function() {
 
                     //Don't show navtabs if on login
-                    return ($location.$$path != CONSTANTS.INT_RT_LOGIN);
+                    return ($state.current.name != CONSTANTS.INT_RT_LOGIN);
                 };
 
                 scope.taskNavTabIsActive = function() {
 
-                    return ($location.$$path == CONSTANTS.INT_RT_TASK_LIST ||
-                    $location.$$path == CONSTANTS.INT_RT_TASK);
+                    return ($state.current.name == CONSTANTS.INT_RT_TASK_LIST ||
+                    $state.current.name == CONSTANTS.INT_RT_TASK);
                 };
 
                 scope.employeeNavTabIsActive = function() {
 
-                    return ($location.$$path == CONSTANTS.INT_RT_EMPLOYEE_LIST ||
-                    $location.$$path == CONSTANTS.INT_RT_EMPLOYEE);
+                    return ($state.current.name == CONSTANTS.INT_RT_EMPLOYEE_LIST ||
+                    $state.current.name == CONSTANTS.INT_RT_EMPLOYEE);
                 };
 
                 scope.roomNavTabIsActive = function() {
 
-                    return ($location.$$path == CONSTANTS.INT_RT_ROOM_LIST ||
-                    $location.$$path == CONSTANTS.INT_RT_ROOM);
+                    return ($state.current.name == CONSTANTS.INT_RT_ROOM_LIST ||
+                    $state.current.name == CONSTANTS.INT_RT_ROOM);
                 };
+
+                scope.loadTaskList = function() {
+
+                    $state.go(CONSTANTS.INT_RT_TASK_LIST);
+                };
+
+                scope.loadEmployeeList = function() {
+
+                    $state.go(CONSTANTS.INT_RT_EMPLOYEE_LIST);
+                };
+
+                scope.loadRoomList = function() {
+
+                    $state.go(CONSTANTS.INT_RT_ROOM_LIST);
+                }
             }
         };
     }]);

@@ -17,59 +17,59 @@ domapp.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', 'ionicDa
                 }
             })
             .state('taskList', {
-                url: '/task',
+                url: '/tasklist',
                 views: {
-                    'pviUserList': {
+                    'taskList': {
                         templateUrl: CONSTANTS.BASE_PATH + 'task/directives/taskList.html',
-                        controller: 'taskController'
+                        controller: 'taskListController'
                     }
                 }
             })
-            //.state('employeeList', {
-            //    url: '/employee',
-            //    views: {
-            //        'pviOtherList': {
-            //            templateUrl: CONSTANTS.BASE_PATH + 'employee/directives/employeeList.html',
-            //            controller: 'employeeListController'
-            //        }
-            //    }
-            //})
-            //.state('roomList', {
-            //    url: '/room',
-            //    views: {
-            //        'pviOtherList': {
-            //            templateUrl: CONSTANTS.BASE_PATH + 'room/directives/roomList.html',
-            //            controller: 'roomListController'
-            //        }
-            //    }
-            //})
             .state('task', {
-                url: '/task:taskId',
+                url: '/task/:id',
                 views: {
-                    'pvi': {
+                    'task': {
                         templateUrl: CONSTANTS.BASE_PATH + 'task/directives/task.html',
                         controller: 'taskController'
                     }
                 }
+            })
+            .state('employeeList', {
+                url: '/employee',
+                views: {
+                    'employeeList': {
+                        templateUrl: CONSTANTS.BASE_PATH + 'employee/directives/employeeList.html',
+                        controller: 'employeeListController'
+                    }
+                }
+            })
+            .state('employee', {
+                url: '/employee/:id',
+                views: {
+                    'employee': {
+                        templateUrl: CONSTANTS.BASE_PATH + 'employee/directives/employee.html',
+                        controller: 'employeeController'
+                    }
+                }
+            })
+            .state('roomList', {
+                url: '/room',
+                views: {
+                    'roomList': {
+                        templateUrl: CONSTANTS.BASE_PATH + 'room/directives/roomList.html',
+                        controller: 'roomListController'
+                    }
+                }
+            })
+            .state('room', {
+                url: '/room/:id',
+                views: {
+                    'room': {
+                        templateUrl: CONSTANTS.BASE_PATH + 'room/directives/room.html',
+                        controller: 'roomController'
+                    }
+                }
             });
-            //.state('employee', {
-            //    url: '/employee:employeeId',
-            //    views: {
-            //        'pvi': {
-            //            templateUrl: CONSTANTS.BASE_PATH + 'employee/directives/employee.html',
-            //            controller: 'employeeController'
-            //        }
-            //    }
-            //})
-            //.state('room', {
-            //    url: '/room:roomId',
-            //    views: {
-            //        'pvi': {
-            //            templateUrl: CONSTANTS.BASE_PATH + 'room/directives/room.html',
-            //            controller: 'roomController'
-            //        }
-            //    }
-            //});
 
         $urlRouterProvider.otherwise('/');
 

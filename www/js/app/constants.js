@@ -20,14 +20,14 @@ domapp.constant('CONSTANTS', {
     API_URL_UPDATE_PVI: 'pvis',
     API_URL_DOWNLOAD_PVI: 'pvis',
 
-    //Internal routes
-    INT_RT_LOGIN: '/',
-    INT_RT_TASK_LIST: '/taskList',
-    INT_RT_EMPLOYEE_LIST: '/employeeList',
-    INT_RT_ROOM_LIST: '/roomList',
-    INT_RT_TASK: '/task:',
-    INT_RT_EMPLOYEE: '/employee:',
-    INT_RT_ROOM: '/room:',
+    //Internal states
+    INT_RT_LOGIN: 'login',
+    INT_RT_TASK_LIST: 'taskList',
+    INT_RT_EMPLOYEE_LIST: 'employeeList',
+    INT_RT_ROOM_LIST: 'roomList',
+    INT_RT_TASK: 'task',
+    INT_RT_EMPLOYEE: 'employee',
+    INT_RT_ROOM: 'room',
 
     USER_TYPE_CLIENT: 'CLIENT',
     USER_TYPE_EMPLOYEE: 'EMPLOYEE',

@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<div class="data-loader" ng-show="showDataLoader">
+    <ion-spinner class="android"></ion-spinner>
+    <p>{{text.AT_UPDATING}}</p>
+</div>
 
-</body>
-</html>
+<div class="list room-list">
+    <div class="room-list-item" ng-repeat="room in room | orderBy: ['room.name']: true" hm-tap="roomTap($event)">
+    </div>
+</div>
+
+<div class="action-header">
+    <div class="button button-balanced" hm-tap="addRoom($event)">
+        <i class="icon ion-android-add-circle"></i>
+        {{text.AT_ADD_ROOM}}
+    </div>
+</div>
+
+<div class="action-footer">
+</div>

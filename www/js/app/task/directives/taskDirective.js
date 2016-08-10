@@ -3,8 +3,8 @@
  * Directive for task
  *
  */
-domapp.directive("task", ['CONSTANTS', '$rootScope', '$state', 'taskModel',
-    function(CONSTANTS, $rootScope, $state, taskModel) {
+domapp.directive("task", ['CONSTANTS',
+    function(CONSTANTS) {
 
         return {
             restrict: 'C',
